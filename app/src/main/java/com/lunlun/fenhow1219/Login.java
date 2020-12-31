@@ -186,7 +186,7 @@ public class Login extends AppCompatActivity {
                 }
             });
         } else {
-            Toast.makeText(getApplicationContext(), "All fields require", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "資料不得為空", Toast.LENGTH_LONG).show();
         }
     }
 
