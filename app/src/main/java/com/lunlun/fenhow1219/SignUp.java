@@ -211,6 +211,8 @@ public class SignUp extends AppCompatActivity {
                     }else {
                         Toast.makeText(getApplicationContext(),"請輸入有效的email", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Toast.makeText(getApplicationContext(), "資料不得為空", Toast.LENGTH_LONG).show();
                 }
             }
         });
