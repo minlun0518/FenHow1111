@@ -132,79 +132,98 @@ public class SignUp extends AppCompatActivity {
                 if (!employee_id.equals("") && !email.equals("") && !password.equals("") && !password2.equals("")) {
                     if(email.trim().matches(emailPattern)) {
                         if (password.length() >= 8) {
-                            progressBar.setVisibility(View.VISIBLE);
-                            Handler handler = new Handler();
-                            handler.post(new Runnable() {
+                            Handler handler3 = new Handler();
+                            handler3.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //Starting Write and Read data with URL
-                                    //Creating array for parameters
-                                    String[] field = new String[3];
+                                    String[] field = new String[1];
                                     field[0] = "employee_id";
-                                    field[1] = "email";
-                                    field[2] = "password";
                                     //Creating array for data
-                                    String[] data = new String[4];
+                                    String[] data = new String[1];
                                     data[0] = employee_id;
-                                    data[1] = email;
-                                    data[2] = password;
-                                    data[3] = password2;
-                                    //判斷密碼跟確認密碼是否一致(絹)
-                                    while (!data[2].equals(data[3])) {
-                                        textInputEditTextPassword2.setText("");
-                                        field[2] = "";
-                                        field[3] = "";
-                                        Toast.makeText(SignUp.this, "密碼不一致！", Toast.LENGTH_LONG).show();
-                                        break;
-                                    }
-                                    PutData putData = new PutData("https://192.168.1.109/Hospital/signup.php", "POST", field, data); //網址要改成自己的php檔位置及自己的ip
+                                    PutData putData = new PutData("http://192.168.1.109/Hospital/employee.php", "POST", field, data); //網址要改成自己的php檔位置及自己的ip
                                     if (putData.startPut()) {
                                         if (putData.onComplete()) {
-                                            progressBar.setVisibility(View.GONE);
                                             String result = putData.getResult();
-                                            if (result.equals("Sign Up Success")) {
-                                                Toast.makeText(getApplicationContext(), "註冊成功", Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(getApplicationContext(), Login.class);
-                                                startActivity(intent);
-                                                finish();
+                                            if (result.equals("Employee Success")) {
+                                                progressBar.setVisibility(View.VISIBLE);
+                                                Handler handler = new Handler();
+                                                handler.post(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        //Starting Write and Read data with URL
+                                                        //Creating array for parameters
+                                                        String[] field = new String[3];
+                                                        field[0] = "employee_id";
+                                                        field[1] = "email";
+                                                        field[2] = "password";
+                                                        //Creating array for data
+                                                        String[] data = new String[4];
+                                                        data[0] = employee_id;
+                                                        data[1] = email;
+                                                        data[2] = password;
+                                                        data[3] = password2;
+                                                        //判斷密碼跟確認密碼是否一致(絹)
+                                                        while (!data[2].equals(data[3])) {
+                                                            textInputEditTextPassword2.setText("");
+                                                            field[2] = "";
+                                                            field[3] = "";
+                                                            Toast.makeText(SignUp.this, "密碼不一致！", Toast.LENGTH_LONG).show();
+                                                            break;
+                                                        }
+                                                        PutData putData = new PutData("https://192.168.1.109/Hospital/signup.php", "POST", field, data); //網址要改成自己的php檔位置及自己的ip
+                                                        if (putData.startPut()) {
+                                                            if (putData.onComplete()) {
+                                                                progressBar.setVisibility(View.GONE);
+                                                                String result = putData.getResult();
+                                                                if (result.equals("Sign Up Success")) {
+                                                                    Toast.makeText(getApplicationContext(), "註冊成功", Toast.LENGTH_LONG).show();
+                                                                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                                                                    startActivity(intent);
+                                                                    finish();
+                                                                } else {
+                                                                    Toast.makeText(getApplicationContext(), "註冊失敗", Toast.LENGTH_LONG).show();
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                                //imei傳入資料庫
+                                                if(bindcheck.isChecked()){
+                                                    getImei();
+                                                    Handler handler2 = new Handler();
+                                                    handler2.post(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            String[] field = new String[2];
+                                                            field[0] = "employee_id";
+                                                            field[1] = "imei";
+                                                            String[] data = new String[2];
+                                                            data[0] = employee_id;
+                                                            data[1] = IMEINumber;
+                                                            PutData putData = new PutData("https://192.168.1.109/Hospital/Getimei.php", "POST", field, data); //網址要改成自己的php檔位置及自己的ip
+                                                            if (putData.startPut()) {
+                                                                if (putData.onComplete()) {
+                                                                    progressBar.setVisibility(View.GONE);
+                                                                    String result = putData.getResult();
+                                                                    if (result.equals("Get IMEI Success")) {
+                                                                        //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                                                                    } else {
+                                                                        Toast.makeText(getApplicationContext(), "綁定裝置失敗", Toast.LENGTH_LONG).show();
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    });
+                                                }
                                             } else {
-                                                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                                                Toast.makeText(SignUp.this, "您的員工編號有誤，請確認！", Toast.LENGTH_LONG).show();
                                             }
                                         }
                                     }
                                 }
                             });
-                            //imei傳入資料庫
-                            if(bindcheck.isChecked()){
-                                getImei();
-                                Handler handler2 = new Handler();
-                                handler2.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        String[] field = new String[2];
-                                        field[0] = "employee_id";
-                                        field[1] = "imei";
-                                        String[] data = new String[2];
-                                        data[0] = employee_id;
-                                        data[1] = IMEINumber;
-                                        PutData putData = new PutData("https://192.168.1.109/Hospital/Getimei.php", "POST", field, data); //網址要改成自己的php檔位置及自己的ip
-                                        if (putData.startPut()) {
-                                            if (putData.onComplete()) {
-                                                progressBar.setVisibility(View.GONE);
-                                                String result = putData.getResult();
-                                                if (result.equals("Get IMEI Success")) {
-                                                    //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-                                                    Intent intent = new Intent(getApplicationContext(), Login.class);
-                                                    startActivity(intent);
-                                                    finish();
-                                                } else {
-                                                    //Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-                                                }
-                                            }
-                                        }
-                                    }
-                                });
-                            }
+
                         } else {
                             Toast.makeText(getApplicationContext(), "密碼不可小於8個字", Toast.LENGTH_LONG).show();
                         }
