@@ -152,7 +152,7 @@
                 android:textColorLink="#FFFFFF"
                 app:backgroundTint="#ff008577"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/checkBox"
+                app:layout_constraintStart_toEndOf="@+id/bindcheck"
                 app:layout_constraintTop_toBottomOf="@+id/progress" />
 
             <TextView
@@ -168,7 +168,7 @@
                 tools:targetApi="jelly_bean" />
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/bindcheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -182,7 +182,7 @@
                 android:id="@+id/passcheck2"
                 android:layout_width="25dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="10dp"
                 android:button="@drawable/ic_eye"
                 app:layout_constraintEnd_toEndOf="@+id/textInputLayoutPassword2"
@@ -192,7 +192,7 @@
                 android:id="@+id/passcheck"
                 android:layout_width="25dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:button="@drawable/ic_eye"
