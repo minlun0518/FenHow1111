@@ -28,6 +28,7 @@ public class GalleryFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
                 new ViewModelProvider(this).get(GalleryViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
         galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -36,14 +37,16 @@ public class GalleryFragment extends Fragment {
                 textView.setText(s);
             }
         });
-        return root;
+
+        mButtonPwdChange = (Button) root.findViewById(R.id.buttonPwdChange);
         initview();
+        return root;
     }
 
     private void initview() {
         mButtonPwdChange.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                GalleryFragment.this.startActivity(new Intent(GalleryFragment.this, ChangePwdActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), ChangePwdActivity.class));
             }
         });
     }
