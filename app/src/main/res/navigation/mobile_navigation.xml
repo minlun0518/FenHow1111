@@ -14,13 +14,13 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.lunlun.fenhow1219.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="哈哈哈"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.lunlun.fenhow1219.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="所有功能"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
