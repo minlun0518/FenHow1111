@@ -2,25 +2,32 @@ package com.lunlun.fenhow1219.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.lunlun.fenhow1219.ChangePwdActivity;
+import com.lunlun.fenhow1219.MainActivity;
 import com.lunlun.fenhow1219.R;
 import com.lunlun.fenhow1219.ApplicationItem;
 import com.lunlun.fenhow1219.ApplicationItemAdapter;
 import com.lunlun.fenhow1219.Task;
 import com.lunlun.fenhow1219.TaskAdapter;
 import com.lunlun.fenhow1219.MyDateUtils;
+import com.lunlun.fenhow1219.WelcomeActivity;
+import com.lunlun.fenhow1219.ui.gallery.GalleryFragment;
 import com.lunlun.fenhow1219.ui.slideshow.SlideshowFragment;
 
 import java.text.SimpleDateFormat;
@@ -28,6 +35,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -38,6 +47,7 @@ public class HomeFragment extends Fragment {
     private TextView home_date_textView;
     private RecyclerView noterecyclerView;
     private TextView textView;
+    private Button clickbutton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -55,14 +65,14 @@ public class HomeFragment extends Fragment {
         findView();
         return root;
     }
-
+    private List<ApplicationItem> applicationItemList;
     private void findView() {
         root.findViewById(R.id.seeAlltextView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent appintent = new Intent(HomeFragment.this, SlideshowFragment.class);
-//                startActivity(appintent);
-//                finish();
+                Intent appintent = new Intent(getActivity(), SlideshowFragment.class);
+                getActivity().startActivity(appintent);
+//                getActivity().finish();
             }
         });
 
@@ -70,6 +80,7 @@ public class HomeFragment extends Fragment {
         home_name_textView.setText(setGreetings()+" 討厭鬼 藥師 \n Welcome Back");
         home_date_textView = root.findViewById(R.id.home_date_TextView);
         home_date_textView.setText(MyDateUtils.formatDefaultWithDayOfWeek(Calendar.getInstance()));
+        clickbutton=root.findViewById(R.id.clickbutton);
     }
 
     public String setGreetings() {
@@ -83,9 +94,9 @@ public class HomeFragment extends Fragment {
     public void findlist() {
         recyclerView.setLayoutManager( new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
         List<ApplicationItem> applicationItemList = new ArrayList<>();
-        applicationItemList.add(new ApplicationItem (1,getString(R.string.app_time_attendance_system),R.drawable.icon_immigration,"點我打卡",null));
+        applicationItemList.add(new ApplicationItem (1,getString(R.string.app_time_attendance_system),R.drawable.icon_immigration,"點我打卡",SlideshowFragment.class));
         applicationItemList.add(new ApplicationItem(2,getString(R.string.app_staff_scheduling_system),R.drawable.icon_calendar,"點我排班",null));
-        applicationItemList.add(new ApplicationItem (3,"會議室簽到系統",R.drawable.icon_conversation,"點我簽到",null));
+        applicationItemList.add(new ApplicationItem (3,"會議室簽到系統",R.drawable.icon_conversation,"點我簽到", GalleryFragment.class));
         applicationItemList.add(new ApplicationItem (4,"教學評量系統",R.drawable.icon_checklist,"點我評量",null));
         applicationItemList.add(new ApplicationItem (5,"採檢及生理量測系統",R.drawable.icon_app_blood_sample,"點我進入",null));
         recyclerView.setAdapter(new ApplicationItemAdapter(getActivity(),applicationItemList));
@@ -95,7 +106,7 @@ public class HomeFragment extends Fragment {
         List<Task> taskList = new ArrayList<>();
         taskList.add(new Task (1,"教學評量進度",R.drawable.icon_realdr,"12月學習日誌未完成"));
         taskList.add(new Task (2,"明日班表",R.drawable.icon_mon_card,"大夜班"));
-        taskList.add(new Task (3,"今日會議",R.drawable.icon_conversation,"約會"));
+        taskList.add(new Task (3,"今日會議",R.drawable.icon_conversation,"吃便當"));
         noterecyclerView.setAdapter(new TaskAdapter(getActivity(),taskList));
     }
 }

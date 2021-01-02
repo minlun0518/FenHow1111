@@ -13,5 +13,21 @@
         <item name="colorControlHighlight">@color/ltgray</item>
         <item name="colorButtonNormal">@color/gray</item>
     </style>
+    <style name="SignInButton">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="colorControlHighlight">@color/signin_dark</item>
+        <item name="colorButtonNormal">@color/signin</item>
+    </style>
+    <style name="SignOutButton">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="colorControlHighlight">@color/signout_dark</item>
+        <item name="colorButtonNormal">@color/signout</item>
+    </style>
+    <style name="ButtonOrange600">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="colorControlHighlight">@color/colorOrange700</item>
+        <item name="colorButtonNormal">@color/colorOrange600</item>
+    </style>
 
 </resources>

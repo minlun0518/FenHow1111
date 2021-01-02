@@ -1,6 +1,8 @@
 package com.lunlun.fenhow1219;
 
-public class ApplicationItem{
+import com.lunlun.fenhow1219.ui.home.HomeFragment;
+
+public class ApplicationItem extends HomeFragment {
     public int position;
     public String appName;
     public int imageViewpost;

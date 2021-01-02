@@ -180,8 +180,22 @@
 
     <color name="gray">#888888</color>
     <color name="ltgray">#ff444444</color>
+    <color name="colorBBS1">#005783</color>
+    <color name="colorBBS2">#33b5e5</color>
     <color name="bg_biometric_prompt_dialog">#99000000</color>
     <color name="text_quaternary">#CDCED0</color>
     <color name="text_red">#FF5555</color>
     <color name="text_green">#82C785</color>
+    <color name="colorAccent">#03a9f4</color>
+    <color name="signin">#419641</color>
+    <color name="signin_dark">#2d692d</color>
+    <color name="signin_disabled">#80419641</color>
+    <color name="signout">#eb9316</color>
+    <color name="signout_dark">#ca7f13</color>
+    <color name="signout_disabled">#80eb9316</color>
+    <color name="colorGrey700">#616161</color>
+    <color name="colorGrey800">#424242</color>
+    <color name="colorOrange">#ff9800</color>
+    <color name="colorOrange600">#fb8c00</color>
+    <color name="colorOrange700">#f57c00</color>
 </resources>

@@ -20,6 +20,18 @@
             android:id="@+id/nav_account"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Account" />
-
     </group>
+
+    <group android:id="@+id/group4">
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/png_setting"
+            android:title="設定" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/images"
+            android:title="關於 APP" />
+    </group>
+
+
 </menu>

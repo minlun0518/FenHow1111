@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FenHow1219">
-        <activity android:name=".ChangePwdActivity"></activity>
+        <activity android:name=".SignWorkActivity"></activity>
+        <activity android:name=".ChangePwdActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -28,9 +29,11 @@
         <activity
             android:name=".WelcomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/Theme.FenHow1219.Fullscreen"></activity>
+            android:theme="@style/Theme.FenHow1219.Fullscreen" />
         <activity android:name=".Login" />
         <activity android:name=".SignUp" />
+
+
     </application>
 
 </manifest>
