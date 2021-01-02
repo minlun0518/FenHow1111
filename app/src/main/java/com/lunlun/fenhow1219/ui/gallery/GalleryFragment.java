@@ -40,6 +40,8 @@ public class GalleryFragment extends Fragment {
 
         mButtonPwdChange = (Button) root.findViewById(R.id.buttonPwdChange);
         initview();
+
+
         return root;
     }
 
