@@ -8,4 +8,10 @@
         <item name="android:background">@color/colorPrimary</item>//底下按鈕
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+    <style name="GrayButton">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="colorControlHighlight">@color/ltgray</item>
+        <item name="colorButtonNormal">@color/gray</item>
+    </style>
+
 </resources>

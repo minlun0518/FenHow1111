@@ -54,5 +54,9 @@
     <string name="biometric_dialog_state_succeeded">Verification successful</string>
     <string name="biometric_dialog_use_password">Use Password</string>
 
+    <string name="meeting_manager">會議管理員</string>
+    <string name="meeting_name">會議名稱</string>
+    <string name="meeting_place">地點</string>
+    <string name="meeting_time">時間</string>
 
 </resources>
