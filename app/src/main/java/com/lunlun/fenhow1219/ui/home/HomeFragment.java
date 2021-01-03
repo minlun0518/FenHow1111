@@ -13,13 +13,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.lunlun.fenhow1219.ChangePwdActivity;
+import com.lunlun.fenhow1219.Login;
 import com.lunlun.fenhow1219.MainActivity;
+import com.lunlun.fenhow1219.MeetingFragment;
 import com.lunlun.fenhow1219.R;
 import com.lunlun.fenhow1219.ApplicationItem;
 import com.lunlun.fenhow1219.ApplicationItemAdapter;
@@ -39,8 +43,7 @@ import java.util.List;
 import static androidx.core.content.ContextCompat.startActivity;
 
 public class HomeFragment extends Fragment {
-
-    private HomeViewModel homeViewModel;
+    private static final String TAG = HomeFragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private View root;
     private TextView home_name_textView;
@@ -51,16 +54,10 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         root = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = root.findViewById(R.id.recyclerView);
         textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         findlist();
         findView();
         return root;
@@ -70,12 +67,11 @@ public class HomeFragment extends Fragment {
         root.findViewById(R.id.seeAlltextView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent appintent = new Intent(getActivity(), SlideshowFragment.class);
-                getActivity().startActivity(appintent);
-//                getActivity().finish();
+                Log.d(TAG,"seeAlltextView");
+//                Intent login = new Intent(getActivity(), SlideshowFragment.class);
+//                startActivity(login);
             }
         });
-
         home_name_textView = root.findViewById(R.id.home_name_TextView);
         home_name_textView.setText(setGreetings()+" 討厭鬼 藥師 \n Welcome Back");
         home_date_textView = root.findViewById(R.id.home_date_TextView);
@@ -96,7 +92,7 @@ public class HomeFragment extends Fragment {
         List<ApplicationItem> applicationItemList = new ArrayList<>();
         applicationItemList.add(new ApplicationItem (1,getString(R.string.app_time_attendance_system),R.drawable.icon_immigration,"點我打卡",SlideshowFragment.class));
         applicationItemList.add(new ApplicationItem(2,getString(R.string.app_staff_scheduling_system),R.drawable.icon_calendar,"點我排班",null));
-        applicationItemList.add(new ApplicationItem (3,"會議室簽到系統",R.drawable.icon_conversation,"點我簽到", GalleryFragment.class));
+        applicationItemList.add(new ApplicationItem (3,"會議室簽到系統",R.drawable.icon_conversation,"點我簽到", MeetingFragment.class));
         applicationItemList.add(new ApplicationItem (4,"教學評量系統",R.drawable.icon_checklist,"點我評量",null));
         applicationItemList.add(new ApplicationItem (5,"採檢及生理量測系統",R.drawable.icon_app_blood_sample,"點我進入",null));
         recyclerView.setAdapter(new ApplicationItemAdapter(getActivity(),applicationItemList));

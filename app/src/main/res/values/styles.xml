@@ -8,26 +8,38 @@
         <item name="android:background">@color/colorPrimary</item>//底下按鈕
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
     <style name="GrayButton">
         <item name="android:textColor">#ffffffff</item>
         <item name="colorControlHighlight">@color/ltgray</item>
         <item name="colorButtonNormal">@color/gray</item>
     </style>
+
     <style name="SignInButton">
         <item name="android:textColor">#ffffffff</item>
         <item name="colorControlHighlight">@color/signin_dark</item>
         <item name="colorButtonNormal">@color/signin</item>
     </style>
+
     <style name="SignOutButton">
         <item name="android:textColor">#ffffffff</item>
         <item name="colorControlHighlight">@color/signout_dark</item>
         <item name="colorButtonNormal">@color/signout</item>
     </style>
+
     <style name="ButtonOrange600">
         <item name="android:textColor">#ffffffff</item>
         <item name="android:layout_height">40dp</item>
         <item name="colorControlHighlight">@color/colorOrange700</item>
         <item name="colorButtonNormal">@color/colorOrange600</item>
+    </style>
+    　
+    <style name="mTransparent">　　 　　
+        <item name="android:windowBackground">@color/colorTransparent_15</item>　　 　　 　　 　
+        <item name="android:windowNoTitle">true</item><!-- 无标题 -->
+        <item name="android:windowIsTranslucent">true</item><!-- 半透明,设置为false无透明效果 -->
+        <item name="android:backgroundDimEnabled">true</item><!-- 模糊 -->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item> <!-- 窗口样式Dialog -->　
     </style>
 
 </resources>

@@ -82,7 +82,6 @@ public interface OnBiometricIdentifyCallback {
      */
     public boolean isHardwareDetected() {
         if (isAboveApi28()) {
-            //TODO 这是Api23的判断方法，也许以后有针对Api28的判断方法
             final FingerprintManager fm = mActivity.getSystemService(FingerprintManager.class);
             return fm != null && fm.isHardwareDetected();
         } else if (isAboveApi23()) {

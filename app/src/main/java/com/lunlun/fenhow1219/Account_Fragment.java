@@ -21,13 +21,9 @@ import com.lunlun.fenhow1219.ui.gallery.GalleryViewModel;
  * create an instance of this fragment.
  */
 public class Account_Fragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private GalleryViewModel galleryViewModel;
     private Button mButtonPwdChange;
     private Switch mSwitchAutoSignIn;
     private Button mButtonUserRegister;
@@ -79,8 +75,7 @@ public class Account_Fragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_account_, container, false);
 
@@ -167,7 +162,6 @@ public class Account_Fragment extends Fragment {
                 getActivity().startActivity(new Intent(getActivity(), ChangePwdActivity.class));
             }
         });
-
 
     }
 }

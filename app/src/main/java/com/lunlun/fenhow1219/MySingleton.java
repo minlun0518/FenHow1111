@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import java.util.concurrent.TimeUnit;
 
-/* renamed from: tw.com.eliot.ehr.util.MySingleton */
 public class MySingleton {
 
 

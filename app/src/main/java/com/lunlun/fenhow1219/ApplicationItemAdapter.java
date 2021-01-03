@@ -75,7 +75,7 @@ public class ApplicationItemAdapter extends RecyclerView.Adapter < ApplicationIt
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"class = "+applicationItem.className);
-                Intent pp = new Intent(context, SignWorkActivity.class);
+                Intent pp = new Intent(context, applicationItem.className);
                 view.getContext().startActivity(pp);
             }
 

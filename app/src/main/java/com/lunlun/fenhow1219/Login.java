@@ -83,7 +83,6 @@ public class Login extends AppCompatActivity {
 
     }
 
-
     private void checkDivicd() {
         Log.d(TAG,"DeviceManage : "+IMEINumber);
         if (!IMEINumber.equals("")) {
@@ -289,6 +288,7 @@ public class Login extends AppCompatActivity {
 //            }
 //        });
 
+        //指紋解鎖
         findViewById(R.id.touchidimageButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -327,6 +327,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        //臉部辨識
         findViewById(R.id.faceidimageButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

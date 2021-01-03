@@ -177,6 +177,8 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+    <color name="transparent">#9000</color>
+    <color name="colorTransparent_15">#D9ffffff</color>
 
     <color name="gray">#888888</color>
     <color name="ltgray">#ff444444</color>
@@ -198,4 +200,6 @@
     <color name="colorOrange">#ff9800</color>
     <color name="colorOrange600">#fb8c00</color>
     <color name="colorOrange700">#f57c00</color>
+    <color name="colorPrimaryDark">#222222</color>
+    <color name="gray_80">#80888888</color>
 </resources>

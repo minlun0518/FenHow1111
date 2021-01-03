@@ -6,20 +6,21 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_name"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="還沒想到" />
+            android:id="@+id/nav_account"
+            android:icon="@drawable/ic_name"
+            android:title="Account" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="所有功能" />
         <item
-            android:id="@+id/nav_account"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Account" />
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="還沒想到" />
+
     </group>
 
     <group android:id="@+id/group4">
@@ -31,6 +32,10 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/images"
             android:title="關於 APP" />
+        <item
+            android:id="@+id/Logout"
+            android:icon="@drawable/ic_out"
+            android:title="Logout" />
     </group>
 
 

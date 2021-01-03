@@ -41,8 +41,7 @@ public class SlideshowFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+
         root = inflater.inflate(R.layout.fragment_slideshow, container, false);
 
         medadapter = new CustomGrid(getActivity(), medApp, medimageId,medStatue,medLock);
