@@ -14,9 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FenHow1219">
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+        <activity android:name=".AppPermissionActivity"
+            android:label="請求權限"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -28,12 +27,23 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Login"
+            android:label="登入"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".WelcomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.FenHow1219.Fullscreen" />
-        <activity android:name=".Login" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".SignWorkActivity" />
+        <activity
+            android:name=".SignUp"
+            android:label="註冊" />
+        <activity
+            android:name=".SignWorkActivity"
+            android:label="出缺勤系統" />
         <activity
             android:name=".ChangePwdActivity"
             android:excludeFromRecents="true"

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayoutSendSMS"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".AppPermissionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/line"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView54"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="申請者: "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="---"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/material_grey_850"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView56"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="員編:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textViewUserID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="----"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlue700"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollViewSMS"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewDefaultMsg1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:text="申請日期:"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/textViewDefaultMsg2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:text="申請原因:"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/textViewDefaultMsg3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:text="特殊需求:"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/textViewDefaultMsg4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:text="急件"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/textViewDefaultMsg5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="請回call分機："
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/buttonSendSMS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="送出"
+                        android:textSize="16sp"
+                        android:theme="@style/ButtonBlue600" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/material_grey_300"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="20dp">
+
+                    <TextView
+                        android:id="@+id/textView61"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="最多輸入160個英數字元，全中文僅70個中文字"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ffff0000"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/editTextMessage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffffff"
+                        android:editable="true"
+                        android:ems="10"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:minHeight="200sp"
+                        android:padding="5dp"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/buttonMic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="語音輸入"
+                        android:theme="@style/ButtonBlue600"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

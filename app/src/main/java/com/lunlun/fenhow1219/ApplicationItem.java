@@ -1,5 +1,7 @@
 package com.lunlun.fenhow1219;
 
+import androidx.fragment.app.Fragment;
+
 import com.lunlun.fenhow1219.ui.home.HomeFragment;
 
 public class ApplicationItem extends HomeFragment {
@@ -7,9 +9,9 @@ public class ApplicationItem extends HomeFragment {
     public String appName;
     public int imageViewpost;
     public String appAct;
-    public Class className;
+    public androidx.fragment.app.Fragment className;
 
-    public ApplicationItem(int position, String appName, int imageViewpost,String appAct,Class className){
+    public ApplicationItem(int position, String appName, int imageViewpost, String appAct, Fragment className){
         this.position=position;
         this.appName=appName;
         this.imageViewpost=imageViewpost;

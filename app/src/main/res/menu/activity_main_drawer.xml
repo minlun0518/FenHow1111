@@ -33,7 +33,7 @@
             android:icon="@drawable/images"
             android:title="關於 APP" />
         <item
-            android:id="@+id/Logout"
+            android:id="@+id/nav_Logout"
             android:icon="@drawable/ic_out"
             android:title="Logout" />
     </group>

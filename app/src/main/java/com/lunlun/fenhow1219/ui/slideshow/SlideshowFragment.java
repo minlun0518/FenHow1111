@@ -1,6 +1,8 @@
 package com.lunlun.fenhow1219.ui.slideshow;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -25,6 +27,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabItem;
+import com.lunlun.fenhow1219.AppPermissionActivity;
+import com.lunlun.fenhow1219.Login;
+import com.lunlun.fenhow1219.MainActivity;
 import com.lunlun.fenhow1219.R;
 
 public class SlideshowFragment extends Fragment {
@@ -139,17 +144,25 @@ public class SlideshowFragment extends Fragment {
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getActivity(), AppPermissionActivity.class);
                     if(!appStatue[position]){
                         new AlertDialog.Builder(getActivity())
                                 .setIcon(appImageId[position])
                                 .setTitle(appName[position])
                                 .setMessage("您目前無法使用此功能，是否項資訊室請求權限?")
-                                .setPositiveButton("是",null)
+                                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        startActivity(intent);
+                                    }
+                                })
                                 .setNeutralButton("否",null)
                                 .show();
                     }else {
                         Snackbar.make(view, appName[position], Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+//                        Intent login = new Intent(getContext(), Login.class);
+//                        startActivity(login);
                     }
                 }
             });

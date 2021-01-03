@@ -202,4 +202,5 @@
     <color name="colorOrange700">#f57c00</color>
     <color name="colorPrimaryDark">#222222</color>
     <color name="gray_80">#80888888</color>
+    <color name="colorBlue700">#0288d1</color>
 </resources>

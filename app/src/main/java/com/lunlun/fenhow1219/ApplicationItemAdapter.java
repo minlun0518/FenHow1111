@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,7 +44,7 @@ public class ApplicationItemAdapter extends RecyclerView.Adapter < ApplicationIt
         TextView appname;
         View itemView;
         Button clickbutton;
-        Class className;
+        Fragment className;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -76,10 +77,8 @@ public class ApplicationItemAdapter extends RecyclerView.Adapter < ApplicationIt
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"class = "+applicationItem.className);
-//                FragmentManager fm = HomeFragment.this.getActivity().getSupportFragmentManager();
-//                fm.beginTransaction().replace(R.id.nav_host_fragment, new SlideshowFragment(), "fragment_slide").commit();
+                homeFragment.iclick(applicationItem.className);
             }
-
         });
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
