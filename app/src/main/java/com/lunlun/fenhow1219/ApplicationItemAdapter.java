@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -75,8 +76,8 @@ public class ApplicationItemAdapter extends RecyclerView.Adapter < ApplicationIt
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"class = "+applicationItem.className);
-                Intent pp = new Intent(context, applicationItem.className);
-                view.getContext().startActivity(pp);
+//                FragmentManager fm = HomeFragment.this.getActivity().getSupportFragmentManager();
+//                fm.beginTransaction().replace(R.id.nav_host_fragment, new SlideshowFragment(), "fragment_slide").commit();
             }
 
         });

@@ -1,0 +1,49 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="sync"
+        app:icon="@drawable/icon_notification"
+        app:title="推播通知" />
+
+    <PreferenceCategory android:title="個人">
+        <PreferenceCategory android:title="出勤">
+            <SwitchPreferenceCompat
+                app:dependency="sync"
+                app:key="attachment"
+                app:summaryOff="啟用推播通知"
+                app:summaryOn="關閉"
+                app:title="打卡提醒" />
+            <SwitchPreferenceCompat
+                app:dependency="sync"
+                app:key="attachment"
+                app:icon="@drawable/icon_clock"
+                app:summaryOff="啟用推播通知"
+                app:summaryOn="關閉"
+                app:title="班表提醒" />
+        </PreferenceCategory>
+        <SwitchPreferenceCompat
+            app:dependency="sync"
+            app:key="attachment"
+            app:summaryOff="啟用推播通知"
+            app:summaryOn="關閉"
+            app:title="會議提醒" />
+        <SwitchPreferenceCompat
+            app:dependency="sync"
+            app:key="attachment"
+            app:summaryOff="啟用推播通知"
+            app:summaryOn="關閉"
+            app:title="評量提醒" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="公告">
+        <SwitchPreference
+            app:dependency="sync"
+            android:defaultValue="false"
+            android:key="switch_preference_1"
+            android:title="醫院公告"
+            android:icon="@drawable/icon_louder"/>
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>

@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        app:key="signature"
+        app:title="裝置名稱"
+        app:icon="@drawable/icon_smartphone"
+        app:useSimpleSummaryProvider="true" />
+
+    <ListPreference
+        app:defaultValue="fju"
+        app:entries="@array/cgh_location_entries"
+        app:entryValues="@array/cgh_location_values"
+        app:key="cgh_location"
+        app:title="常用院區"
+        app:icon="@drawable/icon_place"
+        app:useSimpleSummaryProvider="true" />
+
+
+</PreferenceScreen>

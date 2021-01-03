@@ -1,0 +1,21 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        app:fragment="com.lunlun.fenhow1219.SettingsActivity$MessagesFragment"
+        app:icon="@drawable/icon_security"
+        app:key="登入資訊"
+        app:title="@string/messages_header" />
+
+    <Preference
+        app:fragment="com.lunlun.fenhow1219.SettingsActivity$FastLoginFragment"
+        app:icon="@drawable/icon_login"
+        app:key="fast_login_header"
+        app:title="登入方式" />
+
+    <Preference
+        app:fragment="com.lunlun.fenhow1219.SettingsActivity$SyncFragment"
+        app:icon="@drawable/icon_notification"
+        app:key="sync_header"
+        app:title="推播通知" />
+
+</PreferenceScreen>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="生物辨識"
+        app:summary="使用您的面孔或指紋進行驗證">
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="usebio"
+            android:title="啟用生物辨識登入" />
+        <SwitchPreferenceCompat
+            android:dependency="usebio"
+            android:key="usebio_face"
+            android:summaryOff="@string/usebio_face_summary_off"
+            android:summaryOn="@string/usebio_face_summary_on"
+            android:title="啟用臉部辨識" />
+        <SwitchPreferenceCompat
+            android:dependency="usebio"
+            android:key="usebio_finger"
+            android:summaryOff="@string/usebio_finger_summary_off"
+            android:summaryOn="@string/usebio_finger_summary_on"
+            android:title="啟用臉部辨識" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="手勢登入"
+        app:summary="畫出連線圖行進行驗證">
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:icon="@drawable/icon_password_dot"
+            android:key="usepiont"
+            android:title="啟用手勢登入" />
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>

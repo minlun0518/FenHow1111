@@ -3,6 +3,7 @@ package com.lunlun.fenhow1219;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
@@ -68,6 +69,22 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_explanation:
+//                startActivity(new Intent(this, ExplanationActivity.class));
+                return true;
+            case R.id.action_system_management:
+//                startActivity(new Intent(this, ManagementActivity.class));
+                return true;
+            default:
+                return true;
+        }
     }
 
     @Override

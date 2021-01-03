@@ -14,7 +14,7 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_system"
+        android:id="@+id/action_system_management"
         android:orderInCategory="200"
         android:title="@string/action_system"
         app:showAsAction="never" />

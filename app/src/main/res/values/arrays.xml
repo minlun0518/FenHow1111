@@ -1,0 +1,16 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="cgh_location_entries">
+        <item>國泰醫院</item>
+        <item>新竹國泰</item>
+        <item>汐止國泰</item>
+        <item>內湖國泰診所</item>
+    </string-array>
+
+    <string-array name="cgh_location_values">
+        <item>taipei</item>
+        <item>hsinchu</item>
+        <item>sijhih</item>
+        <item>neihu</item>
+    </string-array>
+</resources>

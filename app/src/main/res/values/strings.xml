@@ -102,6 +102,23 @@
     <string name="work_dept">工作單位</string>
     <string name="work_off">下班</string>
     <string name="work_on">上班</string>
+    <string name="title_activity_settings">設定</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">安全資訊</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="usebio_face_summary_on">使用臉部辨識</string>
+    <string name="usebio_face_summary_off">不使用臉部辨識</string>
+    <string name="usebio_finger_summary_on">使用指紋辨識</string>
+    <string name="usebio_finger_summary_off">不使用指紋辨識</string>
 
 
 </resources>
