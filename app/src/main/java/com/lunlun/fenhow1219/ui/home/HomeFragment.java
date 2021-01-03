@@ -62,14 +62,14 @@ public class HomeFragment extends Fragment {
         findView();
         return root;
     }
-    private List<ApplicationItem> applicationItemList;
+
     private void findView() {
         root.findViewById(R.id.seeAlltextView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"seeAlltextView");
-//                Intent login = new Intent(getActivity(), SlideshowFragment.class);
-//                startActivity(login);
+                FragmentManager fm = HomeFragment.this.getActivity().getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.nav_host_fragment, new SlideshowFragment(), "fragment_slide").commit();
             }
         });
         home_name_textView = root.findViewById(R.id.home_name_TextView);

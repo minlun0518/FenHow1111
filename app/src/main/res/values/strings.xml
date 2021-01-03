@@ -5,6 +5,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="action_explanation">操作說明</string>
+    <string name="action_system">系統管理</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -100,5 +102,6 @@
     <string name="work_dept">工作單位</string>
     <string name="work_off">下班</string>
     <string name="work_on">上班</string>
+
 
 </resources>
