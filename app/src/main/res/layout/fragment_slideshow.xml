@@ -63,6 +63,7 @@
                 android:columnWidth="120dp"
                 android:gravity="center"
                 android:numColumns="auto_fit"
+
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"

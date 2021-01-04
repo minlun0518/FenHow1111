@@ -5,26 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?android:attr/actionModeSplitBackground"
-    android:theme="@style/ThemeOverlay.FenHow1219.FullscreenContainer"
+    android:theme="@style/Theme.FenHow1219.Fullscreen"
     tools:context=".WelcomeActivity">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-    <!--    <TextView-->
-    <!--        android:id="@+id/fullscreen_content"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:gravity="center"-->
-    <!--        android:keepScreenOn="true"-->
-    <!--        android:text="@string/dummy_content"-->
-    <!--        android:textColor="?attr/fullscreenTextColor"-->
-    <!--        android:textSize="50sp"-->
-    <!--        android:textStyle="bold" />-->
-
-
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,11 +24,11 @@
 
             <Button
                 android:id="@+id/dummy_button"
-                style="?android:attr/buttonBarButtonStyle"
+                style="@style/InfoButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:text="登入" />
 
         </LinearLayout>
 

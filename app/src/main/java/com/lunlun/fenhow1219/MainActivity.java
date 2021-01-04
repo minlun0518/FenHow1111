@@ -58,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         if(!logon){
-            Intent login = new Intent(MainActivity.this,Login.class);
-            startActivityForResult(login, REQUEST_CODE);
+            Intent login = new Intent(MainActivity.this,WelcomeActivity.class);
+//            startActivityForResult(login, REQUEST_CODE);
+            startActivity(login);
         }
 
     }
@@ -77,6 +78,23 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_settings:
+//                startActivity(new Intent(this, SettingsActivity.class));
+//                return true;
+//            case R.id.action_explanation:
+////                startActivity(new Intent(this, ExplanationActivity.class));
+//                return true;
+//            case R.id.action_system_management:
+////                startActivity(new Intent(this, ManagementActivity.class));
+//                return true;
+//            default:
+//                return true;
+//        }
+//    }
 
 
 

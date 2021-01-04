@@ -1,7 +1,9 @@
 package com.lunlun.fenhow1219;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -35,9 +37,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
+import java.lang.reflect.Array;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.net.ssl.HostnameVerifier;
@@ -69,6 +73,9 @@ public class Login extends AppCompatActivity {
     private ImageView touchID;
     private ImageView faceID;
     private LinearLayout mlinearLayout;
+    private final int imeiNum = 3;
+    private Context context;
+    private AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +87,11 @@ public class Login extends AppCompatActivity {
         findViews();
         getImei();
         checkDivicd();
-
+        checkImeiNum();
     }
 
     private void checkDivicd() {
-        Log.d(TAG,"DeviceManage : "+IMEINumber);
+        Log.d(TAG, "DeviceManage : " + IMEINumber);
         if (!IMEINumber.equals("")) {
             Handler handler = new Handler();
             handler.post(new Runnable() {
@@ -116,14 +123,14 @@ public class Login extends AppCompatActivity {
 
     public void lololo() {
         List<HotUserModel> hotUserList = new ArrayList<>();
-        hotUserList.add(new HotUserModel(1,"45478",null,"ChiaW","000000"));
-        hotUserList.add(new HotUserModel(2,"59487",null,"LanLan","000000"));
-        hotUserList.add(new HotUserModel(3,"94520",null,"Jolin","000000"));
-        hotUserList.add(new HotUserModel(4,"00708",null,"TomsTost","000000"));
-        hotUserList.add(new HotUserModel(5,"56720",null,"菇腦絲","000000"));
+        hotUserList.add(new HotUserModel(1, "45478", null, "ChiaW", "000000"));
+        hotUserList.add(new HotUserModel(2, "59487", null, "LanLan", "000000"));
+        hotUserList.add(new HotUserModel(3, "94520", null, "Jolin", "000000"));
+        hotUserList.add(new HotUserModel(4, "00708", null, "TomsTost", "000000"));
+        hotUserList.add(new HotUserModel(5, "56720", null, "菇腦絲", "000000"));
 
         for (int i = 0; i < hotUserList.size(); i++) {
-            View inflate2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.login_public_device, mlinearLayout,false);
+            View inflate2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.login_public_device, mlinearLayout, false);
             CardView cardView = (CardView) inflate2.findViewById(R.id.cd_hot_article);
             ConstraintLayout constraintLayout = (ConstraintLayout) inflate2.findViewById(R.id.constraintLayout);
             String userName = hotUserList.get(i).getUserName();
@@ -146,7 +153,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void runrun(String userType,String urlType){
+    public void runrun(String userType, String urlType) {
         userInput = String.valueOf(textInputEditTextIDorEmail.getText());
         password = String.valueOf(textInputEditTextPassword.getText());
 
@@ -164,13 +171,13 @@ public class Login extends AppCompatActivity {
                     data[1] = password;
                     PutData putData = new PutData(urlType, "POST", field, data);
                     if (putData.startPut()) {
-                        Log.d(TAG,"userType: "+userType+" / "+ userInput);
-                        Log.d(TAG,"urlType: "+urlType);
-                        Log.d(TAG,"password: "+ password);
+                        Log.d(TAG, "userType: " + userType + " / " + userInput);
+                        Log.d(TAG, "urlType: " + urlType);
+                        Log.d(TAG, "password: " + password);
                         if (putData.onComplete()) {
                             progressBar.setVisibility(View.GONE);
                             String result = putData.getResult();
-                            Log.d(TAG,"result: " + result);
+                            Log.d(TAG, "result: " + result);
                             if (result.equals("Login Success")) {
                                 Toast.makeText(getApplicationContext(), "登入成功", Toast.LENGTH_LONG).show();
 //                                loginSuccess();
@@ -189,18 +196,46 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private void loginSuccess(){
-        if (rememberme_checkBox_statue) {
-            Log.d(TAG, "rememberme_checkBox_statue is :" + rememberme_checkBox_statue);
-            SharedPreferences settingpref = getSharedPreferences("test", MODE_PRIVATE);
-            settingpref.edit()
-                    .putBoolean("RREF_REMEMBER", rememberme_checkBox_statue)
-                    .putString("PREF_IMEI", IMEINumber)
-                    .putString("PREF_USERID", userInput)
-                    .putString("PREF_PASSWROD", password)
-                    .commit();
-            Log.d(TAG, "settingpref is :" + rememberme_checkBox_statue + " " + IMEINumber + " " + userInput + " " + password);
-        }
+
+    public void checkImeiNum() {
+//        if (true) {
+        builder = new AlertDialog.Builder(Login.this);
+        builder.setIcon(R.drawable.icon_stop);
+        builder.setTitle("您已綁定三個裝置,請選擇刪除裝置");
+        builder.setSingleChoiceItems(R.array.device_imei_test, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                List<String> list = Arrays.asList((getResources().getStringArray(R.array.device_imei_test)));
+                Toast.makeText(Login.this, list.get(i), Toast.LENGTH_SHORT).show();
+//                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setPositiveButton("完成", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(Login.this, "OKOK", Toast.LENGTH_SHORT).show();
+                dialogInterface.dismiss();
+            }
+        });
+        builder.create().show();
+//        }
+    }
+
+    private void loginSuccess() {
+        Log.d(TAG, "rememberme_checkBox_statue is :" + rememberme_checkBox_statue);
+        SharedPreferences settingpref = getSharedPreferences("test", MODE_PRIVATE);
+        settingpref.edit()
+                .putString("PREF_IMEI", IMEINumber)
+                .putString("PREF_USERID", userInput)
+                .putString("PREF_PASSWROD", password)
+                .commit();
+        Log.d(TAG, "settingpref is :" + rememberme_checkBox_statue + " " + IMEINumber + " " + userInput + " " + password);
     }
 
     private void findViews() {
@@ -221,7 +256,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 isMail = isChecked;
-                textInputLayout.setHint(isMail ? getString(R.string.employeeid ): getString(R.string.email));
+                textInputLayout.setHint(isMail ? getString(R.string.employeeid) : getString(R.string.email));
             }
         });
 
@@ -258,12 +293,13 @@ public class Login extends AppCompatActivity {
         });
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 if (isMail) {
-                    runrun("employee_id",getString(R.string.idlogin_php));
+                    runrun("employee_id", getString(R.string.idlogin_php));
                 } else {
-                    runrun("email",getString(R.string.login_php));
+                    runrun("email", getString(R.string.login_php));
                 }
             }
         });
@@ -331,7 +367,7 @@ public class Login extends AppCompatActivity {
         findViewById(R.id.faceidimageButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view,"目前不支援臉部辨識",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, "目前不支援臉部辨識", Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -371,23 +407,23 @@ public class Login extends AppCompatActivity {
         imei = findViewById(R.id.ed_imei);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             IMEINumber = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-            Log.d(TAG,"使用模擬器中，到IMEI = "+IMEINumber);
+            Log.d(TAG, "使用模擬器中，到IMEI = " + IMEINumber);
         } else {
             final TelephonyManager mTelephony = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             if (mTelephony.getDeviceId() != null) {
                 IMEINumber = mTelephony.getDeviceId();
-                Log.d(TAG,"mTelephony.getDeviceId()"+IMEINumber);
+                Log.d(TAG, "mTelephony.getDeviceId()" + IMEINumber);
             } else {
                 IMEINumber = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-                Log.d(TAG,"Settings.Secure.ANDROID_ID"+IMEINumber+" / ");
+                Log.d(TAG, "Settings.Secure.ANDROID_ID" + IMEINumber + " / ");
             }
         }
     }
 
-    public void verifiedsuccessfully(){
+    public void verifiedsuccessfully() {
 //        getIntent().putExtra("LOGIN_IMEI",imei.toString());
 //        getIntent().putExtra("LOGIN_ID",textInputEditTextIDorEmail.toString());
-        setResult(RESULT_OK,getIntent());
+        setResult(RESULT_OK, getIntent());
         finish();
     }
 

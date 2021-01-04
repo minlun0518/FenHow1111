@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditTextPreference
         app:key="signature"
@@ -7,12 +8,13 @@
         app:useSimpleSummaryProvider="true" />
 
     <ListPreference
+        android:theme="@style/mitem_"
         app:defaultValue="fju"
         app:entries="@array/cgh_location_entries"
         app:entryValues="@array/cgh_location_values"
+        app:icon="@drawable/icon_place"
         app:key="cgh_location"
         app:title="常用院區"
-        app:icon="@drawable/icon_place"
         app:useSimpleSummaryProvider="true" />
 
 

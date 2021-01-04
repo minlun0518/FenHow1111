@@ -160,6 +160,7 @@ public class Account_Fragment extends Fragment {
         mButtonPwdChange.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 getActivity().startActivity(new Intent(getActivity(), ChangePwdActivity.class));
+
             }
         });
 
