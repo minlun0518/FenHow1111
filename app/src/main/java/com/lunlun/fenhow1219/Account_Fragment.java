@@ -1,5 +1,7 @@
 package com.lunlun.fenhow1219;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,8 +14,12 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lunlun.fenhow1219.ui.gallery.GalleryViewModel;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +30,7 @@ public class Account_Fragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private AlertDialog.Builder builder;
     private Button mButtonPwdChange;
     private Switch mSwitchAutoSignIn;
     private Button mButtonUserRegister;
@@ -159,7 +166,26 @@ public class Account_Fragment extends Fragment {
 
         mButtonPwdChange.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(), ChangePwdActivity.class));
+//                getActivity().startActivity(new Intent(getActivity(), ChangePwdActivity.class));
+                LayoutInflater inflater = getLayoutInflater();
+//                View layout= inflater.inflate(R.layout.activity_change_pwd);
+//                View layout = (View) findViewById(R.layout.activity_change_pwd);
+//                        builder = new AlertDialog.Builder(getContext());
+                builder.setView(R.layout.activity_change_pwd);
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setPositiveButton("完成", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getContext(), "OKOK", Toast.LENGTH_SHORT).show();
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.create().show();
 
             }
         });

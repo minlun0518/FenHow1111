@@ -23,6 +23,21 @@
 
     </group>
 
+    <group android:id="@+id/group3">
+        <item
+            android:id="@+id/nav_meeting"
+            android:icon="@drawable/png_setting"
+            android:title="會議" />
+        <item
+            android:id="@+id/nav_unknow"
+            android:icon="@drawable/images"
+            android:title="打卡囉" />
+        <item
+            android:id="@+id/nav_Logout"
+            android:icon="@drawable/ic_out"
+            android:title="Logout" />
+    </group>
+
     <group android:id="@+id/group4">
         <item
             android:id="@+id/nav_setting"
@@ -32,10 +47,7 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/images"
             android:title="關於 APP" />
-        <item
-            android:id="@+id/nav_Logout"
-            android:icon="@drawable/ic_out"
-            android:title="Logout" />
+
     </group>
 
 

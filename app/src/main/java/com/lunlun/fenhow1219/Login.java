@@ -81,7 +81,11 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mManager = BiometricPromptManager.from(this);
+        try{
+            mManager = BiometricPromptManager.from(this);
+        }catch (Exception e){
+            Log.d(TAG, "mManager = BiometricPromptManager.from(this);" + e);
+        }
 
         handleSSLHandshake();
         findViews();
@@ -195,7 +199,6 @@ public class Login extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "資料不得為空", Toast.LENGTH_LONG).show();
         }
     }
-
 
     public void checkImeiNum() {
 //        if (true) {

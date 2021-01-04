@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.lunlun.fenhow1219.ChangePwdActivity;
-import com.lunlun.fenhow1219.Login;
-import com.lunlun.fenhow1219.MainActivity;
-import com.lunlun.fenhow1219.MeetingFragment;
+import com.lunlun.fenhow1219.MeetingActivity;
 import com.lunlun.fenhow1219.R;
 import com.lunlun.fenhow1219.ApplicationItem;
 import com.lunlun.fenhow1219.ApplicationItemAdapter;
@@ -33,8 +24,6 @@ import com.lunlun.fenhow1219.SettingsActivity;
 import com.lunlun.fenhow1219.Task;
 import com.lunlun.fenhow1219.TaskAdapter;
 import com.lunlun.fenhow1219.MyDateUtils;
-import com.lunlun.fenhow1219.WelcomeActivity;
-import com.lunlun.fenhow1219.ui.gallery.GalleryFragment;
 import com.lunlun.fenhow1219.ui.slideshow.SlideshowFragment;
 
 import java.text.SimpleDateFormat;
@@ -42,8 +31,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class HomeFragment extends Fragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
@@ -55,7 +42,7 @@ public class HomeFragment extends Fragment {
     private TextView textView;
     private Button clickbutton;
     public SlideshowFragment slideshowFragment;
-    public MeetingFragment meetingFragment;
+    public MeetingActivity meetingActivity;
     public HomeFragment homeFragment;
     private Fragment className;
 

@@ -28,6 +28,20 @@
         android:name="com.lunlun.fenhow1219.Account_Fragment"
         android:label="Account"
         tools:layout="@layout/fragment_account_" />
-
+    <activity
+        android:id="@+id/nav_setting"
+        android:name="com.lunlun.fenhow1219.SettingsActivity"
+        android:label="Setting"
+        tools:layout="@layout/settings_activity" />
+    <activity
+        android:id="@+id/nav_meeting"
+        android:name="com.lunlun.fenhow1219.MeetingActivity"
+        android:label="會議"
+        tools:layout="@layout/activity_meeting"/>
+    <activity
+        android:id="@+id/nav_unknow"
+        android:name="com.lunlun.fenhow1219.SignWorkActivity"
+        android:label="會議"
+        tools:layout="@layout/activity_sign_up"/>
 
 </navigation>
