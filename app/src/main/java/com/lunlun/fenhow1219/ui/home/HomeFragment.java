@@ -64,6 +64,7 @@ public class HomeFragment extends Fragment {
                 Log.d(TAG, "seeAlltextView");
                 FragmentManager fm = HomeFragment.this.getActivity().getSupportFragmentManager();
                 fm.beginTransaction().replace(R.id.nav_host_fragment, new SlideshowFragment(), "fragment_slide").commit();
+
             }
         });
         home_name_textView = root.findViewById(R.id.home_name_TextView);

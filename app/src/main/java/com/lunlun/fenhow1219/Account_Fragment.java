@@ -1,10 +1,10 @@
 package com.lunlun.fenhow1219;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -30,7 +30,6 @@ public class Account_Fragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private AlertDialog.Builder builder;
     private Button mButtonPwdChange;
     private Switch mSwitchAutoSignIn;
     private Button mButtonUserRegister;
@@ -45,6 +44,7 @@ public class Account_Fragment extends Fragment {
     private TextView mTextViewUserWorkDepartmentName;
     private TextView mTextViewWcode;
     private View root;
+    private View root2;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -85,6 +85,7 @@ public class Account_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_account_, container, false);
+        root2 = inflater.inflate(R.layout.test, container, false);
 
         mButtonPwdChange = (Button) root.findViewById(R.id.buttonPwdChange);
 
@@ -167,24 +168,8 @@ public class Account_Fragment extends Fragment {
         mButtonPwdChange.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 //                getActivity().startActivity(new Intent(getActivity(), ChangePwdActivity.class));
-                LayoutInflater inflater = getLayoutInflater();
-//                View layout= inflater.inflate(R.layout.activity_change_pwd);
-//                View layout = (View) findViewById(R.layout.activity_change_pwd);
-//                        builder = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.Theme_Design_BottomSheetDialog);
                 builder.setView(R.layout.activity_change_pwd);
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.setPositiveButton("完成", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getContext(), "OKOK", Toast.LENGTH_SHORT).show();
-                        dialogInterface.dismiss();
-                    }
-                });
                 builder.create().show();
 
             }

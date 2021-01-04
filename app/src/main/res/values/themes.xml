@@ -23,6 +23,7 @@
     <style name="Theme.FenHow1219.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
     </style>
 
     <style name="Theme.FenHow1219.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

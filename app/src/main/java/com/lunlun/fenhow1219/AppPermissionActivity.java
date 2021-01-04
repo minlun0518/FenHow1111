@@ -93,6 +93,7 @@ public class AppPermissionActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(AppPermissionActivity.this);
                 builder.setMessage((CharSequence) "確認要送出訊息嗎?");
                 builder.setCancelable(false);
+                builder.setView(R.layout.activity_change_pwd);
                 builder.setPositiveButton((CharSequence) "是", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         String _psn_code = ((Ehr) AppPermissionActivity.this.getApplication()).wcode.substring(4);
