@@ -37,7 +37,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-import java.lang.reflect.Array;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
@@ -134,7 +133,7 @@ public class Login extends AppCompatActivity {
         hotUserList.add(new HotUserModel(5, "56720", null, "菇腦絲", "000000"));
 
         for (int i = 0; i < hotUserList.size(); i++) {
-            View inflate2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.login_public_device, mlinearLayout, false);
+            View inflate2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_login_public_device, mlinearLayout, false);
             CardView cardView = (CardView) inflate2.findViewById(R.id.cd_hot_article);
             ConstraintLayout constraintLayout = (ConstraintLayout) inflate2.findViewById(R.id.constraintLayout);
             String userName = hotUserList.get(i).getUserName();

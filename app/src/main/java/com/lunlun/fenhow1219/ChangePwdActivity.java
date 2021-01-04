@@ -11,9 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.lunlun.fenhow1219.R;
-import com.lunlun.fenhow1219.ui.home.HomeFragment;
-
 public class ChangePwdActivity extends AppCompatActivity {
     boolean _running = false;
     private Button mButtonCancel;

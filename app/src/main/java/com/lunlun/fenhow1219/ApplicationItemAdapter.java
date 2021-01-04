@@ -1,10 +1,6 @@
 package com.lunlun.fenhow1219;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.nfc.Tag;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lunlun.fenhow1219.ui.home.HomeFragment;
-import com.lunlun.fenhow1219.ui.slideshow.SlideshowFragment;
-
 import java.util.List;
-
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class ApplicationItemAdapter extends RecyclerView.Adapter < ApplicationItemAdapter.ViewHolder > {
     private Context context;
     private LayoutInflater layoutInflater;
     private List<ApplicationItem> applicationItemList;
-    public HomeFragment homeFragment;
 
     private final String TAG = ApplicationItemAdapter.class.getSimpleName();
 
@@ -44,7 +31,6 @@ public class ApplicationItemAdapter extends RecyclerView.Adapter < ApplicationIt
         TextView appname;
         View itemView;
         Button clickbutton;
-        Fragment className;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -63,7 +49,7 @@ public class ApplicationItemAdapter extends RecyclerView.Adapter < ApplicationIt
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType){
         LayoutInflater layoutInflater =LayoutInflater.from(context);
-        View itemView = layoutInflater.inflate(R.layout.itemview,viewGroup,false);
+        View itemView = layoutInflater.inflate(R.layout.itim_home_itemview,viewGroup,false);
         return new ViewHolder(itemView);
     }
 
@@ -76,8 +62,9 @@ public class ApplicationItemAdapter extends RecyclerView.Adapter < ApplicationIt
         viewHolder.clickbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG,"class = "+applicationItem.className);
-                homeFragment.iclick(applicationItem.className);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setView(applicationItem.className);
+                builder.create().show();
             }
         });
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

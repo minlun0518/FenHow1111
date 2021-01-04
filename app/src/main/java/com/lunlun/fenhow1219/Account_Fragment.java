@@ -1,7 +1,5 @@
 package com.lunlun.fenhow1219;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -14,12 +12,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.lunlun.fenhow1219.ui.gallery.GalleryViewModel;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,7 +76,7 @@ public class Account_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_account_, container, false);
+        root = inflater.inflate(R.layout.fragment_account, container, false);
         root2 = inflater.inflate(R.layout.test, container, false);
 
         mButtonPwdChange = (Button) root.findViewById(R.id.buttonPwdChange);
@@ -171,7 +163,6 @@ public class Account_Fragment extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.Theme_Design_BottomSheetDialog);
                 builder.setView(R.layout.activity_change_pwd);
                 builder.create().show();
-
             }
         });
 

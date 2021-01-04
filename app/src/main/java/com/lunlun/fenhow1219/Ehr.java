@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.lunlun.fenhow1219.ui.home.HomeFragment;
-
 public class Ehr extends Application {
     public String employeeKind = "";
     public boolean identityConfirmOk = false;

@@ -1,4 +1,4 @@
-package com.lunlun.fenhow1219.ui.home;
+package com.lunlun.fenhow1219;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,16 +16,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.lunlun.fenhow1219.MeetingActivity;
-import com.lunlun.fenhow1219.R;
-import com.lunlun.fenhow1219.ApplicationItem;
-import com.lunlun.fenhow1219.ApplicationItemAdapter;
-import com.lunlun.fenhow1219.SettingsActivity;
-import com.lunlun.fenhow1219.Task;
-import com.lunlun.fenhow1219.TaskAdapter;
-import com.lunlun.fenhow1219.MyDateUtils;
-import com.lunlun.fenhow1219.ui.slideshow.SlideshowFragment;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,10 +31,6 @@ public class HomeFragment extends Fragment {
     private RecyclerView noterecyclerView;
     private TextView textView;
     private Button clickbutton;
-    public SlideshowFragment slideshowFragment;
-    public MeetingActivity meetingActivity;
-    public HomeFragment homeFragment;
-    private Fragment className;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -63,8 +49,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Log.d(TAG, "seeAlltextView");
                 FragmentManager fm = HomeFragment.this.getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.nav_host_fragment, new SlideshowFragment(), "fragment_slide").commit();
-
+//                fm.beginTransaction().replace(R.id.nav_host_fragment, new SlideshowFragment(), "fragment_slide").commit();
             }
         });
         home_name_textView = root.findViewById(R.id.home_name_TextView);
@@ -85,11 +70,11 @@ public class HomeFragment extends Fragment {
     public void findlist() {
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
         List<ApplicationItem> applicationItemList = new ArrayList<>();
-        applicationItemList.add(new ApplicationItem(1, getString(R.string.app_time_attendance_system), R.drawable.icon_immigration, "點我打卡", null));
-        applicationItemList.add(new ApplicationItem(2, getString(R.string.app_staff_scheduling_system), R.drawable.icon_calendar, "點我排班", null));
-        applicationItemList.add(new ApplicationItem(3, "會議室簽到系統", R.drawable.icon_conversation, "點我簽到", null));
-        applicationItemList.add(new ApplicationItem(4, "教學評量系統", R.drawable.icon_checklist, "點我評量", null));
-        applicationItemList.add(new ApplicationItem(5, "採檢及生理量測系統", R.drawable.icon_app_blood_sample, "點我進入", null));
+        applicationItemList.add(new ApplicationItem(1, getString(R.string.app_time_attendance_system), R.drawable.icon_immigration, "點我打卡", R.layout.list_daily));
+        applicationItemList.add(new ApplicationItem(2, getString(R.string.app_staff_scheduling_system), R.drawable.icon_calendar, "點我排班", R.layout.test));
+        applicationItemList.add(new ApplicationItem(3, "會議室簽到系統", R.drawable.icon_conversation, "點我簽到", R.layout.test));
+        applicationItemList.add(new ApplicationItem(4, "教學評量系統", R.drawable.icon_checklist, "點我評量", R.layout.test));
+        applicationItemList.add(new ApplicationItem(5, "採檢及生理量測系統", R.drawable.icon_app_blood_sample, "點我進入",R.layout.test));
         recyclerView.setAdapter(new ApplicationItemAdapter(getActivity(), applicationItemList));
 
         noterecyclerView = root.findViewById(R.id.notionrecyclerView);
@@ -100,13 +85,6 @@ public class HomeFragment extends Fragment {
         taskList.add(new Task(3, "今日會議", R.drawable.icon_conversation, "吃便當"));
         noterecyclerView.setAdapter(new TaskAdapter(getActivity(), taskList));
     }
-
-    public void iclick(Fragment className) {
-        this.className=className;
-//        FragmentManager fm = HomeFragment.this.getActivity().getSupportFragmentManager();
-//        fm.beginTransaction().replace(R.id.nav_host_fragment, className,"fragment_slide").commit();
-    }
-
 
 //    @Override
     public boolean onOptionsItemSelected(MenuItem item) {

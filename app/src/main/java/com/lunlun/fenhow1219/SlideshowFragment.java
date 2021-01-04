@@ -1,9 +1,8 @@
-package com.lunlun.fenhow1219.ui.slideshow;
+package com.lunlun.fenhow1219;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
@@ -16,25 +15,17 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabItem;
 import com.lunlun.fenhow1219.AppPermissionActivity;
-import com.lunlun.fenhow1219.Login;
-import com.lunlun.fenhow1219.MainActivity;
 import com.lunlun.fenhow1219.R;
 
 public class SlideshowFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
     private View root;
     private TableLayout tableLayout;
     private CustomGrid medadapter;
@@ -81,7 +72,6 @@ public class SlideshowFragment extends Fragment {
     private boolean[] zuStatue={false};
     private boolean[] zuLock={false};
 
-
     class  CustomGrid extends BaseAdapter {
         private Context context;
         private final String[] appName;
@@ -119,7 +109,7 @@ public class SlideshowFragment extends Fragment {
             matrix.setSaturation(0);
             ColorMatrixColorFilter filter=new ColorMatrixColorFilter(matrix);
             if (row == null){
-                row = getLayoutInflater().inflate(R.layout.slideshowview, null);
+                row = getLayoutInflater().inflate(R.layout.item_slideshow_app, null);
                 ImageView image = (ImageView) row.findViewById(R.id.grid_image);
                 TextView text = (TextView) row.findViewById (R.id.grid_text);
                 ImageView statue= (ImageView) row.findViewById(R.id.gridStatue);
@@ -162,7 +152,7 @@ public class SlideshowFragment extends Fragment {
                         Snackbar.make(view, appName[position], Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
 //                        Intent login = new Intent(getContext(), Login.class);
-//                        startActivity(login);
+////                        startActivity(login);
                     }
                 }
             });

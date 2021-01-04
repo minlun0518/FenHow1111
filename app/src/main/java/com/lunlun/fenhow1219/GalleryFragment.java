@@ -1,4 +1,4 @@
-package com.lunlun.fenhow1219.ui.gallery;
+package com.lunlun.fenhow1219;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.lunlun.fenhow1219.ui.home.HomeFragment"
+        android:name="com.lunlun.fenhow1219.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.lunlun.fenhow1219.ui.gallery.GalleryFragment"
+        android:name="com.lunlun.fenhow1219.GalleryFragment"
         android:label="哈哈哈"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.lunlun.fenhow1219.ui.slideshow.SlideshowFragment"
+        android:name="com.lunlun.fenhow1219.SlideshowFragment"
         android:label="所有功能"
         tools:layout="@layout/fragment_slideshow" />
 
@@ -27,12 +27,12 @@
         android:id="@+id/nav_account"
         android:name="com.lunlun.fenhow1219.Account_Fragment"
         android:label="Account"
-        tools:layout="@layout/fragment_account_" />
+        tools:layout="@layout/fragment_account" />
     <activity
         android:id="@+id/nav_setting"
         android:name="com.lunlun.fenhow1219.SettingsActivity"
         android:label="Setting"
-        tools:layout="@layout/settings_activity" />
+        tools:layout="@layout/activity_settings" />
     <activity
         android:id="@+id/nav_meeting"
         android:name="com.lunlun.fenhow1219.MeetingActivity"
