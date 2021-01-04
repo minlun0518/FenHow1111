@@ -119,6 +119,8 @@
     <string name="usebio_face_summary_off">不使用臉部辨識</string>
     <string name="usebio_finger_summary_on">使用指紋辨識</string>
     <string name="usebio_finger_summary_off">不使用指紋辨識</string>
+    <string name="default_notification_channel_id">default_channel_id</string>
+    <string name="default_notification_channel_title">Default Channel</string>
 
 
 </resources>

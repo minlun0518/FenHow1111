@@ -3,11 +3,18 @@ package com.lunlun.fenhow1219;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.NotificationCompat;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +28,8 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
+
+import java.security.BasicPermission;
 
 public class AppPermissionActivity extends AppCompatActivity {
     private static final String TAG = AppPermissionActivity.class.getSimpleName();
@@ -49,6 +58,9 @@ public class AppPermissionActivity extends AppCompatActivity {
     public TextView mTextViewDefaultMsg5;
     private TextView mTextViewDoctorBBCall;
     private TextView mTextViewDoctorName;
+
+    private NotificationManager notifManager;
+    private String[] mess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +105,13 @@ public class AppPermissionActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(AppPermissionActivity.this);
                 builder.setMessage((CharSequence) "確認要送出訊息嗎?");
                 builder.setCancelable(false);
-                builder.setView(R.layout.activity_change_pwd);
                 builder.setPositiveButton((CharSequence) "是", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        createNotification("mess.toString()");
                         String _psn_code = ((Ehr) AppPermissionActivity.this.getApplication()).wcode.substring(4);
+                        mess=new String[]{AppPermissionActivity.this.hospMk, AppPermissionActivity.this.doctorBBCall, _message, _psn_code};
+                        Log.d(TAG,"2222"+mess);
+
                         new AsyncTaskSendSMS().execute(new String[]{AppPermissionActivity.this.hospMk, AppPermissionActivity.this.doctorBBCall, _message, _psn_code});
                     }
                 });
@@ -143,6 +158,56 @@ public class AppPermissionActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void createNotification(String aMessage) {
+        final int NOTIFY_ID = 0; // ID of notification
+        String id = getString(R.string.default_notification_channel_id); // default_channel_id
+        String title = getString(R.string.default_notification_channel_title); // Default Channel
+        Intent intent;
+        PendingIntent pendingIntent;
+        NotificationCompat.Builder builder;
+        if (notifManager == null) {
+            notifManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = notifManager.getNotificationChannel(id);
+            if (mChannel == null) {
+                mChannel = new NotificationChannel(id, title, importance);
+                mChannel.enableVibration(true);
+                mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                notifManager.createNotificationChannel(mChannel);
+            }
+            builder = new NotificationCompat.Builder(this, id);
+            intent = new Intent(this, SystemManagementActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            builder.setContentTitle("權限請求")  // required
+                    .setSmallIcon(android.R.drawable.ic_popup_reminder) // required
+                    .setContentText(this.getString(R.string.app_name))  // required
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setTicker(aMessage)
+                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+        } else {
+            builder = new NotificationCompat.Builder(this);
+            intent = new Intent(this, SystemManagementActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            builder.setContentTitle("權限請求")                           // required
+                    .setSmallIcon(android.R.drawable.ic_popup_reminder) // required
+                    .setContentText(this.getString(R.string.app_name))  // required
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setTicker(aMessage)
+                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
+                    .setPriority(Notification.PRIORITY_HIGH);
+        }
+        Notification notification = builder.build();
+        notifManager.notify(NOTIFY_ID, notification);
     }
 
     public void insertDefaultMsg(String _msg) {
