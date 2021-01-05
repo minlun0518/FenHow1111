@@ -25,11 +25,6 @@ import java.util.List;
 
 public class DailysFragment extends Fragment {
 
-    //    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.fragment_dailys);
-//    }
     public int expandPos = -1;
     /* access modifiers changed from: private */
     public Boolean loading = false;
@@ -256,6 +251,7 @@ public class DailysFragment extends Fragment {
         private Context context;
         private List<Reg> lists;
 
+
         public RegRecyclerAdapter(Context context2, List<Reg> lists2) {
             this.context = context2;
             this.lists = lists2;
@@ -314,7 +310,7 @@ public class DailysFragment extends Fragment {
     }
 
     /* renamed from: tw.com.eliot.ehr.fragment.DailysFragment$Reg */
-    class Reg {
+    static class Reg {
 
         /* renamed from: ip */
         String f126ip;

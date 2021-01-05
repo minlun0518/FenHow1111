@@ -37,10 +37,16 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
+import org.json.JSONObject;
+
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.net.ssl.HostnameVerifier;
@@ -74,13 +80,16 @@ public class Login extends AppCompatActivity {
     private LinearLayout mlinearLayout;
     private AlertDialog.Builder builder;
 
+    private SharedPreferences spref;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        try{
+        try {
             mManager = BiometricPromptManager.from(this);
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d(TAG, "mManager = BiometricPromptManager.from(this);" + e);
         }
 
@@ -310,6 +319,7 @@ public class Login extends AppCompatActivity {
 
                         @Override
                         public void onSucceeded() {
+                            loginSuccess();
                             verifiedsuccessfully();
                             Toast.makeText(Login.this, "辨識成功", Toast.LENGTH_SHORT).show();
                         }
@@ -391,23 +401,107 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    // formatType格式为yyyy-MM-dd HH:mm:ss//yyyy年MM月dd日 HH时mm分ss秒
+    // data Date类型的时间
+    public static String dateToString(Date data, String formatType) {
+        return new SimpleDateFormat(formatType).format(data);
+    }
+
+    // currentTime要转换的long类型的时间
+    // formatType要转换的string类型的时间格式
+    public static String longToString(long currentTime, String formatType)
+            throws ParseException {
+        Date date = longToDate(currentTime, formatType); // long类型转成Date类型
+        String strTime = dateToString(date, formatType); // date类型转成String
+        return strTime;
+    }
+
+    // strTime要转换的string类型的时间，formatType要转换的格式yyyy-MM-dd HH:mm:ss//yyyy年MM月dd日
+    // HH时mm分ss秒，
+    // strTime的时间格式必须要与formatType的时间格式相同
+    public static Date stringToDate(String strTime, String formatType)
+            throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat(formatType);
+        Date date = null;
+        date = formatter.parse(strTime);
+        return date;
+    }
+
+    // currentTime要转换的long类型的时间
+    // formatType要转换的时间格式yyyy-MM-dd HH:mm:ss//yyyy年MM月dd日 HH时mm分ss秒
+    public static Date longToDate(long currentTime, String formatType)
+            throws ParseException {
+        Date dateOld = new Date(currentTime); // 根据long类型的毫秒数生命一个date类型的时间
+        String sDateTime = dateToString(dateOld, formatType); // 把date类型的时间转换为string
+        Date date = stringToDate(sDateTime, formatType); // 把String类型转换为Date类型
+        return date;
+    }
+
+    // strTime要转换的String类型的时间
+    // formatType时间格式
+    // strTime的时间格式和formatType的时间格式必须相同
+    public static long stringToLong(String strTime, String formatType)
+            throws ParseException {
+        Date date = stringToDate(strTime, formatType); // String类型转成date类型
+        if (date == null) {
+            return 0;
+        } else {
+            long currentTime = dateToLong(date); // date类型转成long类型
+            return currentTime;
+        }
+    }
+
+    // currentTime要转换的long类型的时间
+    // formatType要转换的时间格式yyyy-MM-dd HH:mm:ss//yyyy年MM月dd日 HH时mm分ss秒
+    public static long dateToLong(Date date) {
+        return date.getTime();
+    }
+
     //確認身分後 帶資料
     private void loginSuccess() {
+        Date rightNow = Calendar.getInstance().getTime();
         Log.d(TAG, "rememberme_checkBox_statue is :" + rememberme_checkBox_statue);
         SharedPreferences settingpref = getSharedPreferences("test", MODE_PRIVATE);
         settingpref.edit()
                 .putString("PREF_IMEI", IMEINumber)
-                .putString("PREF_USERID", userInput)
-                .putString("PREF_PASSWROD", password)
+                .putString("PREF_USERID", "A0708")
+                .putString("mobileid", IMEINumber)
+                .putString("PREF_PASSWORD", "000000")
+                .putString("wcode", "A0708")
+                .putString("wname", "努力的孩子")
+                .putLong("reg_time", dateToLong(rightNow))
+                .putString("dept_code", "A")
+                .putString("dept_name", "藥劑科")
+                .putString("work_dept_code", "work_dept_code=A")
+                .putString("work_dept_name", "work_dept_name=藥劑科")
+                .putString("pos_code", "p")
+                .putString("pos_name", "藥師")//職稱
+                .putBoolean("allow_mobile_signin", true)
+                .putString("employee_kind", "路人")
+                .putString("pwd_expired_date", "2020/01/09")
+                .putInt("pwd_expired_days", 800)
                 .commit();
         Log.d(TAG, "settingpref is :" + rememberme_checkBox_statue + " " + IMEINumber + " " + userInput + " " + password);
+        Log.d(TAG, "start_time" + dateToLong(rightNow));
+
+//        JSONObject jsonObject = new JSONObject();
+//        SharedPreferences.Editor editor = Login.this.spref.edit();
+//        editor.putString("mobileid", jsonObject.optString("mobileid"));
+//        editor.putString(EmailAuthProvider.PROVIDER_ID, password);
+//        editor.putLong("reg_time", dateToLong(rightNow));
+//        editor.putLong("start_time", dateToLong(rightNow));
+//        editor.putBoolean("allow", false);
+
     }
 
     public void verifiedsuccessfully() {
 //        getIntent().putExtra("LOGIN_IMEI",imei.toString());
+        getIntent().putExtra("LOGIN_IMEI", IMEINumber);
 //        getIntent().putExtra("LOGIN_ID",textInputEditTextIDorEmail.toString());
+        getIntent().putExtra("LOGIN_ID", "A0708");
         setResult(RESULT_OK, getIntent());
-
+//        startActivity(MainActivity);
+//        MainActivity().
         finish();
     }
 

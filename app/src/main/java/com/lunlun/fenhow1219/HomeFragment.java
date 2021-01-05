@@ -42,7 +42,6 @@ public class HomeFragment extends Fragment {
 
         findlist();
         findView();
-//        DailyF();
         return root;
     }
 
@@ -81,7 +80,7 @@ public class HomeFragment extends Fragment {
         applicationItemList.add(new ApplicationItem(2, getString(R.string.app_staff_scheduling_system), R.drawable.icon_app_calendar, "點我排班", R.layout.test));
         applicationItemList.add(new ApplicationItem(3, "會議室簽到系統", R.drawable.icon_app_conversation, "點我簽到", R.layout.test));
         applicationItemList.add(new ApplicationItem(4, "教學評量系統", R.drawable.icon_app_checklist, "點我評量", R.layout.test));
-        applicationItemList.add(new ApplicationItem(5, "採檢及生理量測系統", R.drawable.icon_app_blood_sample, "點我進入",R.layout.test));
+        applicationItemList.add(new ApplicationItem(5, "採檢及生理量測系統", R.drawable.icon_app_blood_sample, "點我進入", R.layout.test));
         recyclerView.setAdapter(new ApplicationItemAdapter(getActivity(), applicationItemList));
 
         noterecyclerView = root.findViewById(R.id.notionrecyclerView);
@@ -95,31 +94,15 @@ public class HomeFragment extends Fragment {
     }
 
     public void DailyF() {
-        LinearLayout dailyLayout = (LinearLayout) root.findViewById(R.id.dailyLayout);
-        List<Daily> dailyList = new ArrayList<>();
-        int position;
-
+//        List<Daily> dailyList = new ArrayList<>();
+//yyyy-MM-dd hh:mm:ss
+//        List<DailysFragment.Reg> regList = new ArrayList<>();
+//        regList.add(new DailysFragment.Reg("1","A",1300,"140.122.52.52","Android"));
 //        dailyList.add(new Daily("一般藥局","P","13:00","22:00","13:00","17:30","18:00","22:00","on","1",Calendar.getInstance().setTime(new SimpleDateFormat("yyyy/MM/dd").parse("2021/01/04")));
-
-
-        TextView mWorkMonth=root.findViewById(R.id.textViewDailyWorkMonth);
-//        mWorkMonth.setText(MyDateUtils.DayNCKUH(MyDateUtils.DayNCKUH.Date2Str("MM", dailyList.get(position).work_date);
-
-        TextView mWeekday=root.findViewById(R.id.textViewDailyWorkWeekday);
-        mWeekday.setText(getString(Calendar.DAY_OF_WEEK));
-        TextView mWorkDay=root.findViewById(R.id.textViewDailyWorkDay);
-        TextView mClassNo=root.findViewById(R.id.textViewDailyShift);
-        TextView mRange=root.findViewById(R.id.textViewDailyRange);
-        TextView mDutyGroup=root.findViewById(R.id.textViewDailyDutyGroup);
-        TextView mWorkOn1=root.findViewById(R.id.textViewDailyWorkOn1);
-        TextView mWorkOff1=root.findViewById(R.id.textViewDailyWorkOff1);
-        TextView mWorkOn2=root.findViewById(R.id.textViewDailyWorkOn2);
-        TextView mWorkOff2=root.findViewById(R.id.textViewDailyWorkOff2);
-
 
     }
 
-//    @Override
+    //    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:

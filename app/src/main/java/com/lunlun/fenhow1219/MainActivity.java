@@ -25,7 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    boolean logon =false;
+    public boolean logon =false;
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int REQUEST_CODE = 101;
     @Override
@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(!logon){
             Intent intent = new Intent(MainActivity.this,WelcomeActivity.class);
-//            startActivityForResult(login, REQUEST_CODE);
-            startActivity(intent);
+            startActivityForResult(intent, REQUEST_CODE);
+//            startActivity(intent);
         }
 
     }
@@ -71,17 +71,19 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode==REQUEST_CODE){
-//            if(resultCode==RESULT_OK){
-//                String user_name =data.getStringExtra("USER_NAME");
-//                Log.d("RESULT",user_name);
-//                TextView nav_head_tv_mail =findViewById(R.id.nav_head_tv_mail);
-//                TextView nav_head_tv_name =findViewById(R.id.nav_head_tv_name);
-//                nav_head_tv_name.setText(user_name);
-//            }
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_CODE){
+            if(resultCode==RESULT_OK){
+                logon=true;
+                String user_name =data.getStringExtra("USER_NAME");
+                Log.d("RESULT",user_name);
+                TextView nav_head_tv_mail =findViewById(R.id.nav_head_tv_mail);
+                TextView nav_head_tv_name =findViewById(R.id.nav_head_tv_name);
+                nav_head_tv_name.setText(user_name);
+                finish();
+            }
+        }
+    }
 }
