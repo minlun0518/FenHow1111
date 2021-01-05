@@ -39,9 +39,8 @@
         android:label="會議"
         tools:layout="@layout/activity_meeting"/>
     <activity
-        android:id="@+id/nav_unknow"
+        android:id="@+id/nav_SignWork"
         android:name="com.lunlun.fenhow1219.SignWorkActivity"
-        android:label="會議"
-        tools:layout="@layout/activity_sign_up"/>
+        tools:layout="@layout/activity_sign_work"/>
 
 </navigation>

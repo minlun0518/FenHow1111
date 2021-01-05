@@ -53,7 +53,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/images" />
+                app:srcCompat="@drawable/cgh_tree_green" />
 
             <TextView
                 android:id="@+id/textView"

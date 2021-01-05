@@ -203,4 +203,7 @@
     <color name="colorPrimaryDark">#222222</color>
     <color name="gray_80">#80888888</color>
     <color name="colorBlue700">#0288d1</color>
+    <color name="list_even_color">#ffededed</color>
+    <color name="list_odd_color">#ffffffff</color>
+    <color name="refresh_progress_1">@color/colorAccent</color>
 </resources>

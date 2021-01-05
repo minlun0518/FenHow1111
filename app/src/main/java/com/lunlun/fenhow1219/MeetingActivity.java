@@ -28,7 +28,7 @@ public class MeetingActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         AppBarConfiguration mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_account,R.id.nav_about
-                ,R.id.nav_setting,R.id.nav_meeting,R.id.nav_unknow)
+                ,R.id.nav_setting,R.id.nav_meeting,R.id.nav_SignWork)
                 .setDrawerLayout(drawer)
                 .build();
 //        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

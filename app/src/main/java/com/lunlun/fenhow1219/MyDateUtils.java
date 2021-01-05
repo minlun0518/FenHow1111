@@ -1,5 +1,8 @@
 package com.lunlun.fenhow1219;
 
+import android.text.format.DateFormat;
+
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -107,90 +110,7 @@ public class MyDateUtils {
     /* JADX WARNING: Can't fix incorrect switch cases order */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public static String parserWeek(String r6) {
-        /*
-            int r0 = r6.hashCode()
-            r1 = 5
-            r2 = 4
-            r3 = 3
-            r4 = 2
-            r5 = 1
-            switch(r0) {
-                case 49: goto L_0x003f;
-                case 50: goto L_0x0035;
-                case 51: goto L_0x002b;
-                case 52: goto L_0x0021;
-                case 53: goto L_0x0017;
-                case 54: goto L_0x000d;
-                default: goto L_0x000c;
-            }
-        L_0x000c:
-            goto L_0x0049
-        L_0x000d:
-            java.lang.String r0 = "6"
-            boolean r6 = r6.equals(r0)
-            if (r6 == 0) goto L_0x0049
-            r6 = 5
-            goto L_0x004a
-        L_0x0017:
-            java.lang.String r0 = "5"
-            boolean r6 = r6.equals(r0)
-            if (r6 == 0) goto L_0x0049
-            r6 = 4
-            goto L_0x004a
-        L_0x0021:
-            java.lang.String r0 = "4"
-            boolean r6 = r6.equals(r0)
-            if (r6 == 0) goto L_0x0049
-            r6 = 3
-            goto L_0x004a
-        L_0x002b:
-            java.lang.String r0 = "3"
-            boolean r6 = r6.equals(r0)
-            if (r6 == 0) goto L_0x0049
-            r6 = 2
-            goto L_0x004a
-        L_0x0035:
-            java.lang.String r0 = "2"
-            boolean r6 = r6.equals(r0)
-            if (r6 == 0) goto L_0x0049
-            r6 = 1
-            goto L_0x004a
-        L_0x003f:
-            java.lang.String r0 = "1"
-            boolean r6 = r6.equals(r0)
-            if (r6 == 0) goto L_0x0049
-            r6 = 0
-            goto L_0x004a
-        L_0x0049:
-            r6 = -1
-        L_0x004a:
-            if (r6 == 0) goto L_0x0068
-            if (r6 == r5) goto L_0x0065
-            if (r6 == r4) goto L_0x0062
-            if (r6 == r3) goto L_0x005f
-            if (r6 == r2) goto L_0x005c
-            if (r6 == r1) goto L_0x0059
-            java.lang.String r6 = ""
-            return r6
-        L_0x0059:
-            java.lang.String r6 = "六"
-            return r6
-        L_0x005c:
-            java.lang.String r6 = "五"
-            return r6
-        L_0x005f:
-            java.lang.String r6 = "四"
-            return r6
-        L_0x0062:
-            java.lang.String r6 = "三"
-            return r6
-        L_0x0065:
-            java.lang.String r6 = "二"
-            return r6
-        L_0x0068:
-            java.lang.String r6 = "一"
-            return r6
-        */
+
         throw new UnsupportedOperationException("Method not decompiled: org.cgh.app.util.DateUtils.parserWeek(java.lang.String):java.lang.String");
     }
 
@@ -216,5 +136,103 @@ public class MyDateUtils {
         }
         return simpleDateFormat2.format(date);
     }
+
+    public static class DayNCKUH {
+        public static Date Str2Date(String _dateFormat, String _dateString) {
+            try {
+                return new SimpleDateFormat(_dateFormat).parse(_dateString);
+            } catch (ParseException e) {
+                return null;
+            }
+        }
+
+        public static String Date2Str(String _dateFormate, Date _date) {
+            return new SimpleDateFormat(_dateFormate).format(_date);
+        }
+
+        public static String GetDateParts(Date _date, String _dateParts) {
+            return (String) DateFormat.format(_dateParts, _date);
+        }
+
+        public static String ChineseMonth(String _month) {
+            try {
+                switch (Integer.parseInt(_month)) {
+                    case 1:
+                        return "一月";
+                    case 2:
+                        return "二月";
+                    case 3:
+                        return "三月";
+                    case 4:
+                        return "四月";
+                    case 5:
+                        return "五月";
+                    case 6:
+                        return "六月";
+                    case 7:
+                        return "七月";
+                    case 8:
+                        return "八月";
+                    case 9:
+                        return "九月";
+                    case 10:
+                        return "十月";
+                    case 11:
+                        return "十一月";
+                    case 12:
+                        return "十二月";
+                    default:
+                        return _month;
+                }
+            } catch (Exception e) {
+                return _month;
+            }
+        }
+
+        public static String ChineseWeekday(String _weekday) {
+            try {
+                switch (Integer.parseInt(_weekday)) {
+                    case 1:
+                        return "日";
+                    case 2:
+                        return "一";
+                    case 3:
+                        return "二";
+                    case 4:
+                        return "三";
+                    case 5:
+                        return "四";
+                    case 6:
+                        return "五";
+                    case 7:
+                        return "六";
+                    default:
+                        return _weekday;
+                }
+            } catch (Exception e) {
+                return _weekday;
+            }
+        }
+
+        public static long DateDiff(Date s, Date e) {
+            return e.getTime() - s.getTime();
+        }
+
+        public static Date DateAdd(Date d, int num) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(d);
+            cal.add(2, num);
+            return cal.getTime();
+        }
+
+        public static String Long2Str(Long time, String formatStr) {
+            Format format = new SimpleDateFormat(formatStr);
+            Calendar c = Calendar.getInstance();
+//            c.setTimeInMillis(time.longValue() / NotificationOptions.SKIP_STEP_TEN_SECONDS_IN_MS);
+            return format.format(c.getTime());
+        }
+    }
+
+
 }
 

@@ -41,7 +41,7 @@
             <ImageView
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:src="@drawable/ic_fingerprint" />
+                android:src="@drawable/ic_login_fingerprint" />
 
             <TextView
                 android:id="@+id/state_tv"

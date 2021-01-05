@@ -72,8 +72,6 @@ public class Login extends AppCompatActivity {
     private ImageView touchID;
     private ImageView faceID;
     private LinearLayout mlinearLayout;
-    private final int imeiNum = 3;
-    private Context context;
     private AlertDialog.Builder builder;
 
     @Override
@@ -109,7 +107,7 @@ public class Login extends AppCompatActivity {
                         if (putData.onComplete()) {
                             String result = putData.getResult();
                             if (result.equals("Get IMEI Public Success")) {
-                                imei.setText("近期登入");
+                                imei.setText("最近登入");
                                 touchID.setVisibility(View.INVISIBLE);
                                 faceID.setVisibility(View.INVISIBLE);
                                 lololo();
@@ -134,7 +132,7 @@ public class Login extends AppCompatActivity {
         hotUserList.add(new HotUserModel(5, "56720", null, "菇腦絲", "000000"));
 
         for (int i = 0; i < hotUserList.size(); i++) {
-            View inflate2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_login_public_device, mlinearLayout, false);
+            View inflate2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.item_login_public_device, mlinearLayout, false);
             CardView cardView = (CardView) inflate2.findViewById(R.id.cd_hot_article);
             ConstraintLayout constraintLayout = (ConstraintLayout) inflate2.findViewById(R.id.constraintLayout);
             String userName = hotUserList.get(i).getUserName();
@@ -144,13 +142,13 @@ public class Login extends AppCompatActivity {
 
             int i2 = i % 4;
             if (i2 == 1) {
-                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.img_card_blue));
+                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_blue));
             } else if (i2 == 2) {
-                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.img_card_pink));
+                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_pink));
             } else if (i2 != 3) {
-                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.img_card_org));
+                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_org));
             } else {
-                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.img_card_green));
+                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_green));
             }
             mlinearLayout.addView(inflate2);
         }

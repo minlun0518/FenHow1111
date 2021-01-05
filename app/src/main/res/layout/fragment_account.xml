@@ -94,7 +94,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginRight="13dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_realdr" />
+                    app:srcCompat="@drawable/icon_dr" />
             </RelativeLayout>
 
             <LinearLayout
@@ -179,7 +179,8 @@
                     android:id="@+id/textView58"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="當連線至院內專用Wi-Fi，且當日無簽到紀錄時，自動執行簽到" />
+                    android:text="當連線至院內專用Wi-Fi，且當日無簽到紀錄時，自動執行簽到"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/textView60"
@@ -187,7 +188,8 @@
                     android:layout_height="wrap_content"
                     android:text="注意：此功能在部分機型仍無法正常運作，如開啟此功能，仍需確認是否成功完成簽到！！"
                     android:textColor="@color/red"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout

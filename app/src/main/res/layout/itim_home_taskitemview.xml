@@ -40,4 +40,20 @@
         android:textColor="#ABABAB"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@android:style/Widget.Holo.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="2dp"
+        android:background="#D16F6F"
+        android:backgroundTint="#D16F6F"
+        android:fontFamily="casual"
+        android:lineSpacingExtra="8sp"
+        android:text="刪除"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,8 @@
 package com.lunlun.fenhow1219;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -37,6 +41,14 @@ public class Account_Fragment extends Fragment {
     private TextView mTextViewWcode;
     private View root;
     private View root2;
+
+    private Button mButtonCancel;
+    private Button mButtonClose;
+    private Button mButtonConfirm;
+    private EditText mEditTextPwdConfirm;
+    private EditText mEditTextPwdNew;
+    public TextView mTextViewChangePwdError;
+    boolean _running = false;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -77,7 +89,7 @@ public class Account_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_account, container, false);
-        root2 = inflater.inflate(R.layout.test, container, false);
+        root2 = inflater.inflate(R.layout.activity_change_pwd, container, false);
 
         mButtonPwdChange = (Button) root.findViewById(R.id.buttonPwdChange);
 
@@ -160,11 +172,82 @@ public class Account_Fragment extends Fragment {
         mButtonPwdChange.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 //                getActivity().startActivity(new Intent(getActivity(), ChangePwdActivity.class));
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.Theme_Design_BottomSheetDialog);
-                builder.setView(R.layout.activity_change_pwd);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.Theme_Design_BottomSheetDialog);
+                builder.setView(root2);
                 builder.create().show();
+
+                mButtonConfirm = (Button) root2.findViewById(R.id.buttonConfirm);
+                mButtonCancel = (Button) root2.findViewById(R.id.buttonCancel);
+                mButtonClose = (Button) root2.findViewById(R.id.buttonClose);
+                mEditTextPwdNew = (EditText) root2.findViewById(R.id.editTextPwdNew);
+                mEditTextPwdConfirm = (EditText) root2.findViewById(R.id.editTextPwdConfirm);
+                mTextViewChangePwdError = (TextView) root2.findViewById(R.id.textViewChangePwdError);
+                mButtonConfirm.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if (!Account_Fragment.this._running) {
+                            Account_Fragment.this.doChange();
+                        }
+                    }
+                });
+                mButtonCancel.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        getActivity().finish();
+                    }
+                });
+                mButtonClose.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+
+                    }
+                });
             }
         });
 
     }
+
+    public void doChange() {
+        this.mEditTextPwdNew.setError((CharSequence) null);
+        this.mEditTextPwdConfirm.setError((CharSequence) null);
+        boolean cancel = false;
+        View focusView = null;
+        String _pwdNew = this.mEditTextPwdNew.getText().toString().trim();
+        String _pwdConfirm = this.mEditTextPwdConfirm.getText().toString().trim();
+        if (_pwdNew.equals("")) {
+            this.mEditTextPwdNew.setError("新密碼不可以空白!!!");
+            focusView = this.mEditTextPwdNew;
+            cancel = true;
+        } else if (_pwdNew.length() < 6) {
+            this.mEditTextPwdNew.setError("新密碼不可以少於6碼!!!");
+            focusView = this.mEditTextPwdNew;
+            cancel = true;
+        } else if (!_pwdNew.matches(".*\\d+.*") || !_pwdNew.matches(".*[a-zA-Z]+.*") || !_pwdNew.matches(".*\\W+.*")) {
+            this.mEditTextPwdNew.setError("新密碼不符合上述的條件!!!");
+            focusView = this.mEditTextPwdNew;
+            cancel = true;
+        }
+        if (_pwdConfirm.equals("")) {
+            this.mEditTextPwdConfirm.setError("確認密碼不可以空白!!!");
+            focusView = this.mEditTextPwdConfirm;
+            cancel = true;
+        } else if (_pwdConfirm.length() < 6) {
+            this.mEditTextPwdConfirm.setError("確認密碼不可以少於6碼!!!");
+            focusView = this.mEditTextPwdConfirm;
+            cancel = true;
+        } else if (!_pwdConfirm.matches(".*\\d+.*") || !_pwdConfirm.matches(".*[a-zA-Z]+.*") || !_pwdConfirm.matches(".*\\W+.*")) {
+            this.mEditTextPwdConfirm.setError("確認密碼不符合上述的條件!!!");
+            focusView = this.mEditTextPwdConfirm;
+            cancel = true;
+        }
+        if (!cancel && !_pwdNew.equals(_pwdConfirm)) {
+            this.mEditTextPwdConfirm.setError("新密碼和確認密碼不同!!!");
+            focusView = this.mEditTextPwdConfirm;
+            cancel = true;
+        }
+        if (cancel) {
+            focusView.requestFocus();
+            return;
+        }
+
+    }
+
 }

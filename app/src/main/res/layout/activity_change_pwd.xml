@@ -7,15 +7,15 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".ChangePwdActivity">
-<!--    android:theme="@style/Animation.Design.BottomSheetDialog"-->
+
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:gravity="center"
-        android:theme="@style/mTransparent"
-        android:orientation="vertical">
 
+        android:orientation="vertical">
+<!--        android:theme="@style/mTransparent"-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"

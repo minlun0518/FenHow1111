@@ -40,7 +40,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logo" />
+                app:srcCompat="@drawable/cgh_logo" />
 
             <TextView
                 android:id="@+id/ed_imei"
@@ -60,10 +60,29 @@
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                <LinearLayout
+                    android:id="@+id/linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="413dp"
+                android:layout_height="321dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -87,9 +106,9 @@
                         android:id="@+id/IDorEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#F0F5F7"
-                        android:drawableEnd="@drawable/ic_user"
-                        android:drawableRight="@drawable/ic_user"
+                        android:background="#F0F7F2"
+                        android:drawableEnd="@drawable/ic_login_user"
+                        android:drawableRight="@drawable/ic_login_user"
                         android:fontFamily="@font/poppinsmedium"
                         tools:targetApi="jelly_bean" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -108,7 +127,7 @@
                         android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#F0F5F7"
+                        android:background="#F0F7F2"
                         android:singleLine="true"
                         tools:targetApi="jelly_bean" />
 
@@ -118,7 +137,6 @@
                     android:id="@+id/progress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
@@ -128,21 +146,18 @@
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="0dp"
                     android:layout_height="39dp"
-                    android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
-                    android:background="#ff008577"
+                    android:background="@drawable/bg_info_btn"
                     android:text="一般登入"
-                    app:backgroundTint="#ff008577"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textInputLayoutPassword"
                     app:layout_constraintTop_toBottomOf="@+id/progress" />
 
                 <TextView
                     android:id="@+id/signUpText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="24dp"
                     android:fontFamily="@font/poppinsmedium"
                     android:text="@string/signuphere"
                     app:layout_constraintStart_toStartOf="parent"
@@ -155,7 +170,7 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="10dp"
-                    android:button="@drawable/ic_eye"
+                    android:button="@drawable/ic_login_eye"
                     app:layout_constraintEnd_toEndOf="@+id/textInputLayoutPassword"
                     app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmployeeId" />
 
@@ -164,53 +179,45 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="記住我"
-                    app:layout_constraintEnd_toEndOf="@+id/textInputLayoutEmployeeId"
+                    app:layout_constraintStart_toStartOf="@+id/textInputLayoutPassword"
                     app:layout_constraintTop_toTopOf="@+id/buttonLogin" />
+
+                <TextView
+                    android:id="@+id/tvForgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="忘記密碼"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/signUpText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageButton
                 android:id="@+id/touchidimageButton"
+                style="@android:style/Widget.ImageButton"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-                android:layout_marginStart="88dp"
-                android:layout_marginTop="24dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginStart="248dp"
+                android:layout_marginTop="8dp"
+                android:background="?attr/selectableItemBackground"
                 android:scaleType="fitCenter"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                app:srcCompat="@drawable/icon_touch_id" />
+                app:srcCompat="@drawable/icon_login_touch_id" />
 
             <ImageButton
                 android:id="@+id/faceidimageButton"
                 style="@android:style/Widget.ImageButton"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="84dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="?attr/selectableItemBackground"
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                app:srcCompat="@drawable/icon_face_id" />
-
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
-
-                <LinearLayout
-                    android:id="@+id/linear"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" />
-            </HorizontalScrollView>
+                app:srcCompat="@drawable/icon_login_face_id" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

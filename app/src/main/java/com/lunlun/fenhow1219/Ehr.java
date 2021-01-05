@@ -48,7 +48,7 @@ public class Ehr extends Application {
             addIntent.putExtra("android.intent.extra.shortcut.INTENT", shortcutIntent);
             addIntent.putExtra("android.intent.extra.shortcut.NAME", "粉好");
             addIntent.putExtra("duplicate", false);
-            addIntent.putExtra("android.intent.extra.shortcut.ICON_RESOURCE", Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.png_signin));
+            addIntent.putExtra("android.intent.extra.shortcut.ICON_RESOURCE", Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.icon__signin));
             addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
             sendBroadcast(addIntent);
             SharedPreferences.Editor editor = this.mSpref.edit();

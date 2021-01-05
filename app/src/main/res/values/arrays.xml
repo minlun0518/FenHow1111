@@ -19,4 +19,52 @@
         <item>22222222222</item>
         <item>33333333333</item>
     </string-array>
+
+    <string-array name="workday">
+        <item>2020/1/1</item>
+        <item>2020/1/2</item>
+        <item>2020/1/3</item>
+        <item>2020/1/4</item>
+        <item>2020/1/5</item>
+        <item>2020/1/6</item>
+        <item>2020/1/7</item>
+        <item>2020/1/8</item>
+        <item>2020/1/9</item>
+        <item>2020/1/10</item>
+        <item>2020/1/11</item>
+        <item>2020/1/12</item>
+        <item>2020/1/13</item>
+        <item>2020/1/14</item>
+        <item>2020/1/15</item>
+        <item>2020/1/16</item>
+        <item>2020/1/17</item>
+        <item>2020/1/18</item>
+        <item>2020/1/19</item>
+    </string-array>
+
+    <string-array name="workday_values">
+        <item>""</item>
+        <item>""</item>
+        <item>""</item>
+        <item>"P1"</item>
+        <item>"P"</item>
+        <item>"P"</item>
+        <item>"P2"</item>
+        <item>""</item>
+        <item>"A"</item>
+        <item>"P"</item>
+        <item>"P"</item>
+        <item>""</item>
+        <item>"P1"</item>
+        <item>"P1"</item>
+        <item>"P"</item>
+        <item>""</item>
+        <item>""</item>
+        <item>"P1"</item>
+        <item>"P2"</item>
+    </string-array>
+    
+    <string-array name="class_no">
+        <item name="P"></item>
+    </string-array>
 </resources>

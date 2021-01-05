@@ -21,8 +21,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.lunlun.fenhow1219.AppPermissionActivity;
-import com.lunlun.fenhow1219.R;
 
 public class SlideshowFragment extends Fragment {
 
@@ -63,12 +61,12 @@ public class SlideshowFragment extends Fragment {
     private boolean[] medLock={true,false};
 
     private String[] adminApp = {"出勤打卡系統", "員工排班系統","會議室簽到系統","住院醫師教學評量系統"};
-    private int[] adminimageId = {R.drawable.icon_checklist, R.drawable.icon_calendar,R.drawable.icon_conversation,R.drawable.icon_realdr};
+    private int[] adminimageId = {R.drawable.icon_app_checklist, R.drawable.icon_app_calendar,R.drawable.icon_app_conversation,R.drawable.icon_dr};
     private boolean[] adminStatue={true,false,true,false};
     private boolean[] adminLock={true,false,false,false};
 
     private String[] zuApp = {"環境巡檢系統"};
-    private int[] zuimageId = {R.drawable.icon_policeman};
+    private int[] zuimageId = {R.drawable.icon_app_policeman};
     private boolean[] zuStatue={false};
     private boolean[] zuLock={false};
 
@@ -121,7 +119,7 @@ public class SlideshowFragment extends Fragment {
                 }else {
                     image.setImageResource(appImageId[position]);
                     if(appLock[position]){
-                        statue.setImageResource(R.drawable.icon_pin);
+                        statue.setImageResource(R.drawable.icon_app_pin);
                         text.setTextColor(getResources().getColor(R.color.cathayhospital3));
                     }
                 }

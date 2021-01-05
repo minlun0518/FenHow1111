@@ -23,7 +23,7 @@
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logo" />
+                app:srcCompat="@drawable/cgh_logo" />
 
             <TextView
                 android:id="@+id/textView"
@@ -59,8 +59,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#F0F7F2"
-                    android:drawableEnd="@drawable/ic_name"
-                    android:drawableRight="@drawable/ic_name"
+                    android:drawableEnd="@drawable/ic_login_name"
+                    android:drawableRight="@drawable/ic_login_name"
                     android:fontFamily="@font/poppinsmedium"
                     android:singleLine="true"
                     tools:targetApi="jelly_bean" />
@@ -83,8 +83,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#F0F7F2"
-                    android:drawableEnd="@drawable/ic_email"
-                    android:drawableRight="@drawable/ic_email"
+                    android:drawableEnd="@drawable/ic_login_email"
+                    android:drawableRight="@drawable/ic_login_email"
                     android:fontFamily="@font/poppinsmedium"
                     android:inputType="textEmailAddress"
                     android:singleLine="true"
@@ -173,9 +173,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
                 android:layout_marginTop="16dp"
                 android:text="同時綁定此裝置"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword2" />
 
@@ -185,7 +185,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="10dp"
-                android:button="@drawable/ic_eye"
+                android:button="@drawable/ic_login_eye"
                 app:layout_constraintEnd_toEndOf="@+id/textInputLayoutPassword2"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
 
@@ -196,7 +196,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:button="@drawable/ic_eye"
+                android:button="@drawable/ic_login_eye"
                 app:layout_constraintEnd_toEndOf="@+id/textInputLayoutPassword"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail" />
 

@@ -6,11 +6,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_name"
+            android:icon="@drawable/ic_login_name"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_account"
-            android:icon="@drawable/ic_name"
+            android:icon="@drawable/ic_login_name"
             android:title="Account" />
         <item
             android:id="@+id/nav_slideshow"
@@ -26,11 +26,11 @@
     <group android:id="@+id/group3">
         <item
             android:id="@+id/nav_meeting"
-            android:icon="@drawable/png_setting"
+            android:icon="@drawable/icon_setting"
             android:title="會議" />
         <item
-            android:id="@+id/nav_unknow"
-            android:icon="@drawable/images"
+            android:id="@+id/nav_SignWork"
+            android:icon="@drawable/cgh_tree_green"
             android:title="打卡囉" />
         <item
             android:id="@+id/nav_Logout"
@@ -41,11 +41,11 @@
     <group android:id="@+id/group4">
         <item
             android:id="@+id/nav_setting"
-            android:icon="@drawable/png_setting"
+            android:icon="@drawable/icon_setting"
             android:title="設定" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/images"
+            android:icon="@drawable/cgh_tree_green"
             android:title="關於 APP" />
 
     </group>
