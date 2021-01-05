@@ -124,6 +124,7 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    //最近登入
     public void lololo() {
         List<HotUserModel> hotUserList = new ArrayList<>();
         hotUserList.add(new HotUserModel(1, "45478", null, "ChiaW", "000000"));
@@ -154,8 +155,11 @@ public class Login extends AppCompatActivity {
             mlinearLayout.addView(inflate2);
         }
 
+        //要補自動帶入資料
+
     }
 
+    //確認身分
     public void runrun(String userType, String urlType) {
         userInput = String.valueOf(textInputEditTextIDorEmail.getText());
         password = String.valueOf(textInputEditTextPassword.getText());
@@ -199,8 +203,9 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    //私機數量
     public void checkImeiNum() {
-//        if (true) {
+        //!! 這裡要補條件 if (數量>3) {
         builder = new AlertDialog.Builder(Login.this);
         builder.setIcon(R.drawable.icon_stop);
         builder.setTitle("您已綁定三個裝置,請選擇刪除裝置");
@@ -209,7 +214,6 @@ public class Login extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 List<String> list = Arrays.asList((getResources().getStringArray(R.array.device_imei_test)));
                 Toast.makeText(Login.this, list.get(i), Toast.LENGTH_SHORT).show();
-//                dialogInterface.dismiss();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -222,34 +226,19 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(Login.this, "OKOK", Toast.LENGTH_SHORT).show();
+                // !!這裡要補資料庫刪除IMEI
                 dialogInterface.dismiss();
             }
         });
         builder.create().show();
-//        }
-    }
-
-    private void loginSuccess() {
-        Log.d(TAG, "rememberme_checkBox_statue is :" + rememberme_checkBox_statue);
-        SharedPreferences settingpref = getSharedPreferences("test", MODE_PRIVATE);
-        settingpref.edit()
-                .putString("PREF_IMEI", IMEINumber)
-                .putString("PREF_USERID", userInput)
-                .putString("PREF_PASSWROD", password)
-                .commit();
-        Log.d(TAG, "settingpref is :" + rememberme_checkBox_statue + " " + IMEINumber + " " + userInput + " " + password);
     }
 
     private void findViews() {
         textInputEditTextIDorEmail = findViewById(R.id.IDorEmail);
         textInputEditTextPassword = findViewById(R.id.password);
-        buttonLogin = findViewById(R.id.buttonLogin);
-        textViewSignUp = findViewById(R.id.signUpText);
         progressBar = findViewById(R.id.progress);
         textInputLayout = findViewById(R.id.textInputLayoutEmployeeId);
         textInputEditTextPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        touchID = findViewById(R.id.touchidimageButton);
-        faceID = findViewById(R.id.faceidimageButton);
         mlinearLayout = (LinearLayout) findViewById(R.id.linear);
 
         //切換登入方式
@@ -277,6 +266,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        //記住我
         rememberme_checkBox = findViewById(R.id.rememberme);
 //        rememberme_checkBox_statue = getSharedPreferences("test", MODE_PRIVATE).getBoolean("RREF_REMEMBER", false);
 //        if (rememberme_checkBox_statue) {
@@ -285,6 +275,7 @@ public class Login extends AppCompatActivity {
 //        }
 
         //點此註冊
+        textViewSignUp = findViewById(R.id.signUpText);
         textViewSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -294,8 +285,9 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        //登入
+        buttonLogin = findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 if (isMail) {
@@ -306,27 +298,8 @@ public class Login extends AppCompatActivity {
             }
         });
 
-//        textInputEditTextIDorEmail.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                // ignore
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                // ignore
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                if(userInput.contains("@")){
-//                    Toast.makeText(getApplicationContext(), "@@@@@@@@@@@@2", Toast.LENGTH_LONG).show();
-//                    Log.d(TAG,"@@@@@@@@@@@@@@@@2");
-//                }
-//            }
-//        });
-
         //指紋解鎖
+        touchID = findViewById(R.id.touchidimageButton);
         findViewById(R.id.touchidimageButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -334,31 +307,28 @@ public class Login extends AppCompatActivity {
                     mManager.authenticate(new BiometricPromptManager.OnBiometricIdentifyCallback() {
                         @Override
                         public void onUsePassword() {
-                            Toast.makeText(Login.this, "onUsePassword", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "使用密碼", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onSucceeded() {
                             verifiedsuccessfully();
-                            Toast.makeText(Login.this, "onSucceeded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "辨識成功", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onFailed() {
-
-                            Toast.makeText(Login.this, "onFailed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "辨識失敗", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onError(int code, String reason) {
-
-                            Toast.makeText(Login.this, "onError", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "錯誤", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onCancel() {
-
-                            Toast.makeText(Login.this, "onCancel", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "取消辨識", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -366,6 +336,7 @@ public class Login extends AppCompatActivity {
         });
 
         //臉部辨識
+        faceID = findViewById(R.id.faceidimageButton);
         findViewById(R.id.faceidimageButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -422,10 +393,23 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    //確認身分後 帶資料
+    private void loginSuccess() {
+        Log.d(TAG, "rememberme_checkBox_statue is :" + rememberme_checkBox_statue);
+        SharedPreferences settingpref = getSharedPreferences("test", MODE_PRIVATE);
+        settingpref.edit()
+                .putString("PREF_IMEI", IMEINumber)
+                .putString("PREF_USERID", userInput)
+                .putString("PREF_PASSWROD", password)
+                .commit();
+        Log.d(TAG, "settingpref is :" + rememberme_checkBox_statue + " " + IMEINumber + " " + userInput + " " + password);
+    }
+
     public void verifiedsuccessfully() {
 //        getIntent().putExtra("LOGIN_IMEI",imei.toString());
 //        getIntent().putExtra("LOGIN_ID",textInputEditTextIDorEmail.toString());
         setResult(RESULT_OK, getIntent());
+
         finish();
     }
 

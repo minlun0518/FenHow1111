@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         if(!logon){
-            Intent login = new Intent(MainActivity.this,WelcomeActivity.class);
+            Intent intent = new Intent(MainActivity.this,WelcomeActivity.class);
 //            startActivityForResult(login, REQUEST_CODE);
-            startActivity(login);
+            startActivity(intent);
         }
 
     }
