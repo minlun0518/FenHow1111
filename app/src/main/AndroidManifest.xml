@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -16,9 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FenHow1219">
-        <!--        <activity android:name=".DailysFragment"></activity>-->
-        <!--        <activity android:name=".SignWorkFragment" />-->
-        <!--        <activity android:name=".SignInFragment" />-->
+
         <activity
             android:name=".SystemManagementActivity"
             android:label="系統管理後台" />

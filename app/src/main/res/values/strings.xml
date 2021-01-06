@@ -36,9 +36,12 @@
     <string name="sing_up">註冊</string>
     <string name="forget_passward">忘記密碼</string>
 
-    <string name="idlogin_php">http://192.168.1.109/Hospital/idlogin.php</string>
-    <string name="login_php">http://192.168.1.109/Hospital/login.php</string>
-    <string name="imeiPublic_php">http://192.168.1.109/Hospital/imeiPublic.php</string>
+    <string name="idlogin_php">http://192.168.137.1/Hospital/idlogin.php</string>
+    <string name="login_php">http://192.168.137.1/Hospital/login.php</string>
+    <string name="imeiPublic_php">http://192.168.137.1/Hospital/imeiPublic.php</string>
+    <string name="employee_php">http://192.168.137.1/Hospital/employee.php</string>
+    <string name="signup_php">https://192.168.137.1/Hospital/signup.php</string>
+    <string name="Getimei_php">https://192.168.137.1/Hospital/Getimei.php</string>
 
 
     <string name="title_activity_welcome">FullscreenActivity</string>
@@ -61,9 +64,7 @@
     <string name="meeting_place">地點</string>
     <string name="meeting_time">時間</string>
     <string name="mobile_id">設備編號</string>
-    <string name="ncku_hospital">ncku hospital</string>
-    <string name="nckuh_eng">NCKU Hospital</string>
-    <string name="need_register">1.每人僅可使用一個行動裝置簽到退\102.請先為您的行動裝置註冊！\103.未註冊的行動裝置無法簽到退！</string>
+    <string name="need_register">1.每人僅可使用一個行動裝置簽到退\n2.請先為您的行動裝置註冊！\n 3.未註冊的行動裝置無法簽到退！</string>
     <string name="permission_rationale">Contacts permissions are needed for providing email completions.</string>
     <string name="pos_name">職稱</string>
     <string name="prompt_password">密碼 (門急住、KM、AD密碼或民國年生日)</string>
@@ -121,6 +122,7 @@
     <string name="usebio_finger_summary_off">不使用指紋辨識</string>
     <string name="default_notification_channel_id">default_channel_id</string>
     <string name="default_notification_channel_title">Default Channel</string>
+
 
 
 </resources>

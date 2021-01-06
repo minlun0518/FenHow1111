@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -49,8 +50,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        Intent intentw = new Intent(MainActivity.this,WelcomeActivity.class);
+        startActivity(intentw);
+
         if(!logon){
-            Intent intent = new Intent(MainActivity.this,WelcomeActivity.class);
+            Intent intent = new Intent(MainActivity.this,Login.class);
             startActivityForResult(intent, REQUEST_CODE);
 //            startActivity(intent);
         }
@@ -74,15 +78,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if(requestCode==REQUEST_CODE){
             if(resultCode==RESULT_OK){
                 logon=true;
-                String user_name =data.getStringExtra("USER_NAME");
-                Log.d("RESULT",user_name);
-                TextView nav_head_tv_mail =findViewById(R.id.nav_head_tv_mail);
+                String user_name = getSharedPreferences("login", MODE_PRIVATE).getString("wname", "低否");
                 TextView nav_head_tv_name =findViewById(R.id.nav_head_tv_name);
+                Log.d("RESULT",user_name);
                 nav_head_tv_name.setText(user_name);
-                finish();
+
+            }else {
+                Toast.makeText(this, "再見", Toast.LENGTH_LONG).show();
             }
         }
     }

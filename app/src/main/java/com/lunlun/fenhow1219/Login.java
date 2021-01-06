@@ -131,41 +131,6 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    //最近登入
-    public void lololo() {
-        List<HotUserModel> hotUserList = new ArrayList<>();
-        hotUserList.add(new HotUserModel(1, "45478", null, "ChiaW", "000000"));
-        hotUserList.add(new HotUserModel(2, "59487", null, "LanLan", "000000"));
-        hotUserList.add(new HotUserModel(3, "94520", null, "Jolin", "000000"));
-        hotUserList.add(new HotUserModel(4, "00708", null, "TomsTost", "000000"));
-        hotUserList.add(new HotUserModel(5, "56720", null, "菇腦絲", "000000"));
-
-        for (int i = 0; i < hotUserList.size(); i++) {
-            View inflate2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.item_login_public_device, mlinearLayout, false);
-            CardView cardView = (CardView) inflate2.findViewById(R.id.cd_hot_article);
-            ConstraintLayout constraintLayout = (ConstraintLayout) inflate2.findViewById(R.id.constraintLayout);
-            String userName = hotUserList.get(i).getUserName();
-            String userID = "員編:" + hotUserList.get(i).getUserID();
-            ((TextView) inflate2.findViewById(R.id.tv_hot_article_title)).setText(userName);
-            ((TextView) inflate2.findViewById(R.id.tv_hot_article_from)).setText(userID);
-
-            int i2 = i % 4;
-            if (i2 == 1) {
-                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_blue));
-            } else if (i2 == 2) {
-                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_pink));
-            } else if (i2 != 3) {
-                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_org));
-            } else {
-                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_green));
-            }
-            mlinearLayout.addView(inflate2);
-        }
-
-        //要補自動帶入資料
-
-    }
-
     //確認身分
     public void runrun(String userType, String urlType) {
         userInput = String.valueOf(textInputEditTextIDorEmail.getText());
@@ -353,6 +318,42 @@ public class Login extends AppCompatActivity {
         });
     }
 
+
+    //最近登入
+    public void lololo() {
+        List<HotUserModel> hotUserList = new ArrayList<>();
+        hotUserList.add(new HotUserModel(1, "45478", null, "ChiaW", "000000"));
+        hotUserList.add(new HotUserModel(2, "59487", null, "LanLan", "000000"));
+        hotUserList.add(new HotUserModel(3, "94520", null, "Jolin", "000000"));
+        hotUserList.add(new HotUserModel(4, "00708", null, "TomsTost", "000000"));
+        hotUserList.add(new HotUserModel(5, "56720", null, "菇腦絲", "000000"));
+
+        for (int i = 0; i < hotUserList.size(); i++) {
+            View inflate2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.item_login_public_device, mlinearLayout, false);
+            CardView cardView = (CardView) inflate2.findViewById(R.id.cd_hot_article);
+            ConstraintLayout constraintLayout = (ConstraintLayout) inflate2.findViewById(R.id.constraintLayout);
+            String userName = hotUserList.get(i).getUserName();
+            String userID = "員編:" + hotUserList.get(i).getUserID();
+            ((TextView) inflate2.findViewById(R.id.tv_hot_article_title)).setText(userName);
+            ((TextView) inflate2.findViewById(R.id.tv_hot_article_from)).setText(userID);
+
+            int i2 = i % 4;
+            if (i2 == 1) {
+                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_blue));
+            } else if (i2 == 2) {
+                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_pink));
+            } else if (i2 != 3) {
+                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_org));
+            } else {
+                constraintLayout.setBackground(getBaseContext().getDrawable(R.drawable.background_img_card_green));
+            }
+            mlinearLayout.addView(inflate2);
+        }
+
+        //要補自動帶入資料
+
+    }
+
     //忽略https的證書校驗
     public static void handleSSLHandshake() {
         try {
@@ -459,10 +460,12 @@ public class Login extends AppCompatActivity {
 
     //確認身分後 帶資料
     private void loginSuccess() {
+        setResult(RESULT_OK);
         Date rightNow = Calendar.getInstance().getTime();
         Log.d(TAG, "rememberme_checkBox_statue is :" + rememberme_checkBox_statue);
-        SharedPreferences settingpref = getSharedPreferences("test", MODE_PRIVATE);
-        settingpref.edit()
+
+        SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
+        pref.edit()
                 .putString("PREF_IMEI", IMEINumber)
                 .putString("PREF_USERID", "A0708")
                 .putString("mobileid", IMEINumber)
@@ -480,7 +483,7 @@ public class Login extends AppCompatActivity {
                 .putString("employee_kind", "路人")
                 .putString("pwd_expired_date", "2020/01/09")
                 .putInt("pwd_expired_days", 800)
-                .commit();
+                .apply();
         Log.d(TAG, "settingpref is :" + rememberme_checkBox_statue + " " + IMEINumber + " " + userInput + " " + password);
         Log.d(TAG, "start_time" + dateToLong(rightNow));
 
