@@ -42,7 +42,7 @@ public class SignUp extends AppCompatActivity {
     ProgressBar progressBar;
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    //private static final int PERMISSIONS_REQUEST_READ_PHONE_STATE = 999;
+
     String IMEINumber;
     TextView imei;
     private static final int REQUEST_CODE = 101;
@@ -52,7 +52,7 @@ public class SignUp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.sign_up_activity);
 
         textInputEditTextEmployeeId = findViewById(R.id.employeeId);
         textInputEditTextEmail = findViewById(R.id.email);
@@ -64,14 +64,13 @@ public class SignUp extends AppCompatActivity {
         //隱藏密碼
         textInputEditTextPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         textInputEditTextPassword2.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        //getImei();
+
         handleSSLHandshake(); //呼叫忽略https的證書校驗方法
 
         CheckBox passcheck = findViewById(R.id.passcheck);
         passcheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // TODO Auto-generated method stub
                 if (isChecked) {
                     //顯示密碼
                     textInputEditTextPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());

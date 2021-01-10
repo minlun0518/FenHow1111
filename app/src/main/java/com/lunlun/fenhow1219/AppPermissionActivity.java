@@ -67,16 +67,9 @@ public class AppPermissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_permission);
 
-        Bundle b = getIntent().getExtras();
-        if (b != null) {
-            this.hospMk = b.getString("hosp_mk");
-            this.doctorName = b.getString("doctor_name");
-            this.doctorBBCall = b.getString("doctor_bbcall");
-        }
         initView();
 
         this.mScrollViewSMS.scrollTo(0, 500);
-
     }
 
     private void initView() {
@@ -108,11 +101,10 @@ public class AppPermissionActivity extends AppCompatActivity {
                 builder.setPositiveButton((CharSequence) "是", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         createNotification("mess.toString()");
-                        String _psn_code = ((Ehr) AppPermissionActivity.this.getApplication()).wcode.substring(4);
-                        mess=new String[]{AppPermissionActivity.this.hospMk, AppPermissionActivity.this.doctorBBCall, _message, _psn_code};
+
+                        mess=new String[]{AppPermissionActivity.this.hospMk, AppPermissionActivity.this.doctorBBCall, _message};
                         Log.d(TAG,"2222"+mess);
 
-                        new AsyncTaskSendSMS().execute(new String[]{AppPermissionActivity.this.hospMk, AppPermissionActivity.this.doctorBBCall, _message, _psn_code});
                     }
                 });
                 builder.setNegativeButton((CharSequence) "否", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
@@ -218,51 +210,6 @@ public class AppPermissionActivity extends AppCompatActivity {
         this.mEditTextMessage.setSelection(_msg.length() + _pos_start);
     }
 
-    private class AsyncTaskSendSMS extends AsyncTask<String,Void,Void> {
-        JSONObject _result;
-
-        private AsyncTaskSendSMS() {
-            this._result = null;
-        }
-
-        public Void doInBackground(String... params) {
-            try {
-//                Response response = new OkHttpClient.Builder()
-//                        .connectionPool(MySingleton.pool)
-//                        .connectTimeout(30, TimeUnit.SECONDS)
-//                        .readTimeout(30, TimeUnit.SECONDS).build()
-//                        .newCall(new Request.Builder()
-//                                .url(AppPermissionActivity.this.getString(R.string.site_address) + "mobile/apprequest")
-//                                .post(new FormBody.Builder()
-//                                        .add("hosp_mk", params[0])
-//                                        .add("bbcall", params[1])
-//                                        .add("call_message", params[2])
-//                                        .add("call_psn_id", params[3])
-//                                        .build())
-//                                .build())
-//                        .execute();
-//                if (response.code() != 200) {
-//                    return null;
-//                }
-//                this._result = new JSONObject(response.body().string());
-                return null;
-            } catch (Exception e) {
-                return null;
-            }
-        }
-
-        public void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            if (this._result != null) {
-                try {
-                    Snackbar.make((View) AppPermissionActivity.this.mCoordinatorLayout, (CharSequence) this._result.getString("message"), BaseTransientBottomBar.LENGTH_SHORT).show();
-
-                } catch (Exception e) {
-                    Log.d(TAG,""+e);
-                }
-            }
-        }
-    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

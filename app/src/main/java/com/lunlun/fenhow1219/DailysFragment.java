@@ -25,13 +25,8 @@ import java.util.List;
 
 public class DailysFragment extends Fragment {
 
-    public int expandPos = -1;
-    /* access modifiers changed from: private */
     public Boolean loading = false;
-    //    private AsyncTaskDaily mAsyncTaskDaily;
-    /* access modifiers changed from: private */
     public List<Daily> mLists = new ArrayList();
-    /* access modifiers changed from: private */
     public RecyclerView mRecyclerView;
     /* access modifiers changed from: private */
     public SharedPreferences mSpref;
@@ -42,41 +37,13 @@ public class DailysFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.mView = inflater.inflate(R.layout.fragment_daily, container, false);
-//        this.mSpref = MySingleton.getInstance(getActivity().getApplication()).getSharedPreferences();
-        initSwipeRefreshLayout();
-        initData();
+
         initRecyclerView();
         return this.mView;
     }
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-    }
-
-    private void initSwipeRefreshLayout() {
-        this.mSwipeRefreshLayout = (SwipeRefreshLayout) this.mView.findViewById(R.id.swipeDaily);
-        this.mSwipeRefreshLayout.setColorSchemeResources(R.color.refresh_progress_1);
-        this.mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            public void onRefresh() {
-//                DailysFragment.this.clearData();
-//                DailysFragment.this.initData();
-            }
-        });
-    }
-
-    public void onStop() {
-        super.onStop();
-        this.expandPos = -1;
-    }
-
-    public void clearData() {
-        int size = this.mLists.size();
-        if (size > 0) {
-            for (int i = 0; i < size; i++) {
-                this.mLists.remove(0);
-            }
-            this.mRecyclerView.getAdapter().notifyItemRangeRemoved(0, size);
-        }
     }
 
     private void initRecyclerView() {
@@ -101,7 +68,6 @@ public class DailysFragment extends Fragment {
         private Context context;
 
         public List<Daily> lists;
-        private final String TAG = DailyRecyclerAdapter.class.getSimpleName();
 
         public DailyRecyclerAdapter(Context context2, List<Daily> lists2) {
             this.context = context2;
@@ -157,23 +123,13 @@ public class DailysFragment extends Fragment {
             textView.setVisibility(i);
             DailysFragment.this.initRegRecyclerView(holder.mRecyclerViewDailyReg, this.lists.get(position).regs);
             holder.mRecyclerViewDailyReg.setVisibility(View.GONE);
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-//                if (holder.mRecyclerViewDailyReg.getVisibility() != View.GONE || ((Daily) DailyRecyclerAdapter.this.lists.get(position)).regs.size() <= 0) {
-//                    holder.mRecyclerViewDailyReg.setVisibility(View.GONE);
-//                } else {
-//                    holder.mRecyclerViewDailyReg.setVisibility(View.VISIBLE);
-//                }
-                }
-            });
+
             if (position % 2 == 0) {
                 holder.itemView.setBackgroundResource(R.color.list_odd_color);
             } else {
                 holder.itemView.setBackgroundResource(R.color.list_even_color);
             }
-            if (DailysFragment.this.expandPos >= 0 && position == DailysFragment.this.expandPos) {
-                holder.mRecyclerViewDailyReg.setVisibility(View.VISIBLE);
-            }
+
         }
 
         public int getItemCount() {
@@ -309,10 +265,8 @@ public class DailysFragment extends Fragment {
         }
     }
 
-    /* renamed from: tw.com.eliot.ehr.fragment.DailysFragment$Reg */
     static class Reg {
 
-        /* renamed from: ip */
         String f126ip;
         Date reg_datetime;
         String section;
@@ -327,21 +281,5 @@ public class DailysFragment extends Fragment {
             this.source = _source;
         }
     }
-
-    public void initData() {
-//        loadMore(new Date());
-    }
-
-    /* access modifiers changed from: private */
-    public void loadMore(Date _date) {
-//        if (this.mAsyncTaskDaily != null) {
-//            this.mAsyncTaskDaily.cancel(true);
-//            if (!this.mAsyncTaskDaily.isCancelled() || this.mAsyncTaskDaily.getStatus().equals(AsyncTask.Status.FINISHED)) {
-//            }
-//        }
-//        this.mAsyncTaskDaily = new AsyncTaskDaily();
-//        this.mAsyncTaskDaily.execute(new Object[]{Func.C2273DT.Date2Str("yyyyMM", _date)});
-    }
-
 
 }

@@ -2,6 +2,7 @@ package com.lunlun.fenhow1219;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -39,6 +40,7 @@ public class ChangePwdActivity extends AppCompatActivity {
         this.mEditTextPwdNew = (EditText) findViewById(R.id.editTextPwdNew);
         this.mEditTextPwdConfirm = (EditText) findViewById(R.id.editTextPwdConfirm);
         this.mTextViewChangePwdError = (TextView) findViewById(R.id.textViewChangePwdError);
+
         this.mButtonConfirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!ChangePwdActivity.this._running) {

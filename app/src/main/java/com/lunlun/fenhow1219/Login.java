@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -36,8 +38,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
-
-import org.json.JSONObject;
 
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
@@ -81,12 +81,17 @@ public class Login extends AppCompatActivity {
     private AlertDialog.Builder builder;
 
     private SharedPreferences spref;
+    private MyDBHelper dbHelper;
+    private List<Imei> imeiList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_activity);
+        dbHelper = new MyDBHelper(Login.this);
+        dbHelper.getWritableDatabase();
+
         try {
             mManager = BiometricPromptManager.from(this);
         } catch (Exception e) {
@@ -175,17 +180,44 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    public List<Imei> getall () {
+        SQLiteDatabase db =dbHelper.getReadableDatabase();
+        String[] cc={"id","device"};
+        Cursor cursor=db.query("UserImei",cc,null,null,null,null,null);
+        List<Imei> imeiList = new ArrayList <>();
+        while (cursor.moveToNext()) {
+            int id=cursor.getInt(0);
+            String de=cursor.getString(1);
+            Imei imei =new Imei(id,de);
+            imeiList.add(imei);
+        }
+        cursor.close();
+        return imeiList;
+    }
+
     //私機數量
     public void checkImeiNum() {
         //!! 這裡要補條件 if (數量>3) {
+
+        SQLiteDatabase db =dbHelper.getReadableDatabase();
+        String[] cc={"id","device"};
+        Cursor cursor=db.query("UserImei",cc,null,null,null,null,null);
+        imeiList = new ArrayList <>();
+        while (cursor.moveToNext()) {
+            int id=cursor.getInt(0);
+            String de=cursor.getString(1);
+            Imei imei =new Imei(id,de);
+            imeiList.add(imei);
+        }
+        cursor.close();
+
         builder = new AlertDialog.Builder(Login.this);
         builder.setIcon(R.drawable.icon_stop);
         builder.setTitle("您已綁定三個裝置,請選擇刪除裝置");
-        builder.setSingleChoiceItems(R.array.device_imei_test, 0, new DialogInterface.OnClickListener() {
-            @Override
+        builder.setSingleChoiceItems(R.array.device_imei_test, 0, new DialogInterface.OnClickListener() {            @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 List<String> list = Arrays.asList((getResources().getStringArray(R.array.device_imei_test)));
-                Toast.makeText(Login.this, list.get(i), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, list.get(i), Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -321,6 +353,7 @@ public class Login extends AppCompatActivity {
 
     //最近登入
     public void lololo() {
+
         List<HotUserModel> hotUserList = new ArrayList<>();
         hotUserList.add(new HotUserModel(1, "45478", null, "ChiaW", "000000"));
         hotUserList.add(new HotUserModel(2, "59487", null, "LanLan", "000000"));
@@ -329,7 +362,7 @@ public class Login extends AppCompatActivity {
         hotUserList.add(new HotUserModel(5, "56720", null, "菇腦絲", "000000"));
 
         for (int i = 0; i < hotUserList.size(); i++) {
-            View inflate2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.item_login_public_device, mlinearLayout, false);
+            View inflate2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.login_item_public_device, mlinearLayout, false);
             CardView cardView = (CardView) inflate2.findViewById(R.id.cd_hot_article);
             ConstraintLayout constraintLayout = (ConstraintLayout) inflate2.findViewById(R.id.constraintLayout);
             String userName = hotUserList.get(i).getUserName();

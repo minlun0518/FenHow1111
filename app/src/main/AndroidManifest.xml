@@ -8,7 +8,14 @@
     <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -16,14 +23,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FenHow1219">
-
+        android:theme="@style/Theme.FenHow1219.NoActionBar">
         <activity
-            android:name=".SystemManagementActivity"
-            android:label="系統管理後台" />
-        <activity
-            android:name=".AppPermissionActivity"
-            android:label="請求權限" />
+            android:name=".AppMenuActivity"
+            android:label="APP"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -34,6 +37,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SystemManagementActivity"
+            android:label="系統管理後台" />
+        <activity
+            android:name=".AppPermissionActivity"
+            android:label="請求權限" />
         <activity
             android:name=".Login"
             android:label="登入"
@@ -51,9 +60,7 @@
         <activity
             android:name=".SignWorkActivity"
             android:label="出缺勤系統"
-            android:screenOrientation="portrait"
-            android:targetActivity=".activity.SignWorkActivity"
-            android:theme="@style/Theme.FenHow1219.NoActionBar"/>
+            android:targetActivity=".activity.SignWorkActivity" />
         <activity
             android:name=".ChangePwdActivity"
             android:excludeFromRecents="true"

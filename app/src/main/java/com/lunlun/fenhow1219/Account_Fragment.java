@@ -173,33 +173,53 @@ public class Account_Fragment extends Fragment {
             public void onClick(View v) {
 //                getActivity().startActivity(new Intent(getActivity(), ChangePwdActivity.class));
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.Theme_Design_BottomSheetDialog);
-                builder.setView(root2);
-                builder.create().show();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.Theme_Design_BottomSheetDialog);
+//                builder.setView(root2);
+//                builder.create().show();
+//
+//                mButtonConfirm = (Button) root2.findViewById(R.id.buttonConfirm);
+//                mButtonCancel = (Button) root2.findViewById(R.id.buttonCancel);
+//                mButtonClose = (Button) root2.findViewById(R.id.buttonClose);
+//                mEditTextPwdNew = (EditText) root2.findViewById(R.id.editTextPwdNew);
+//                mEditTextPwdConfirm = (EditText) root2.findViewById(R.id.editTextPwdConfirm);
+//                mTextViewChangePwdError = (TextView) root2.findViewById(R.id.textViewChangePwdError);
+//                mButtonConfirm.setOnClickListener(new View.OnClickListener() {
+//                    public void onClick(View v) {
+//                        if (!Account_Fragment.this._running) {
+//                            Account_Fragment.this.doChange();
+//                        }
+//                    }
+//                });
+//                mButtonCancel.setOnClickListener(new View.OnClickListener() {
+//                    public void onClick(View v) {
+//                        getActivity().finish();
+//                    }
+//                });
+//                mButtonClose.setOnClickListener(new View.OnClickListener() {
+//                    public void onClick(View v) {
+//
+//                    }
+//                });
 
-                mButtonConfirm = (Button) root2.findViewById(R.id.buttonConfirm);
-                mButtonCancel = (Button) root2.findViewById(R.id.buttonCancel);
-                mButtonClose = (Button) root2.findViewById(R.id.buttonClose);
-                mEditTextPwdNew = (EditText) root2.findViewById(R.id.editTextPwdNew);
-                mEditTextPwdConfirm = (EditText) root2.findViewById(R.id.editTextPwdConfirm);
-                mTextViewChangePwdError = (TextView) root2.findViewById(R.id.textViewChangePwdError);
-                mButtonConfirm.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        if (!Account_Fragment.this._running) {
-                            Account_Fragment.this.doChange();
-                        }
+                ChangePasswordDialog mDialog;
+                mDialog=ChangePasswordDialog.newInstance();
+                mDialog.setOnChangePasswordDialogActionCallback(new ChangePasswordDialog.OnChangePasswordDialogActionCallback(){
+                    @Override
+                    public void onDialogDismiss() {
+
                     }
-                });
-                mButtonCancel.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        getActivity().finish();
+
+                    @Override
+                    public void onUsePassword() {
+
                     }
-                });
-                mButtonClose.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
+
+                    @Override
+                    public void onCancel() {
 
                     }
                 });
+//                mDialog.show(Account_Fragment.getFragmentManager(), "BiometricPromptApi23");
             }
         });
 

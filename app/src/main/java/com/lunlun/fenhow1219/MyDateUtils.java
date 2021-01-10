@@ -107,8 +107,6 @@ public class MyDateUtils {
         return simpleDateFormat2.format(date);
     }
 
-    /* JADX WARNING: Can't fix incorrect switch cases order */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
     public static String parserWeek(String r6) {
 
         throw new UnsupportedOperationException("Method not decompiled: org.cgh.app.util.DateUtils.parserWeek(java.lang.String):java.lang.String");
@@ -213,26 +211,6 @@ public class MyDateUtils {
                 return _weekday;
             }
         }
-
-        public static long DateDiff(Date s, Date e) {
-            return e.getTime() - s.getTime();
-        }
-
-        public static Date DateAdd(Date d, int num) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(d);
-            cal.add(2, num);
-            return cal.getTime();
-        }
-
-        public static String Long2Str(Long time, String formatStr) {
-            Format format = new SimpleDateFormat(formatStr);
-            Calendar c = Calendar.getInstance();
-//            c.setTimeInMillis(time.longValue() / NotificationOptions.SKIP_STEP_TEN_SECONDS_IN_MS);
-            return format.format(c.getTime());
-        }
     }
-
-
 }
 

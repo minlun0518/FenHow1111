@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/activity_med">
+        <item
+            android:id="@+id/nav_lab"
+            android:icon="@drawable/icon_app_tube"
+            android:title="採檢及生理量測系統" />
+        <item
+            android:id="@+id/nav_critical_value"
+            android:icon="@drawable/icon_app_warning"
+            android:title="危險值通知系統" />
+    </group>
+
+    <group android:id="@+id/activity_admin">
+        <item
+            android:id="@+id/nav_meeting"
+            android:icon="@drawable/icon_app_meeting"
+            android:title="會議簽到系統" />
+        <item
+            android:id="@+id/nav_SignWork"
+            android:icon="@drawable/icon_id_card"
+            android:title="打卡出勤系統" />
+        <item
+            android:id="@+id/nav_staff_scheduling"
+            android:icon="@drawable/icon_id_card"
+            android:title="員工排班系統" />
+        <item
+            android:id="@+id/nav_pgy"
+            android:icon="@drawable/icon_id_card"
+            android:title="住院醫師評量" />zz
+    </group>
+
+    <group android:id="@+id/activity_zu">
+        <item
+            android:id="@+id/nav_environmental_inspection"
+            android:icon="@drawable/icon_app_meeting"
+            android:title="環境巡檢系統" />
+
+    </group>
+
+</menu>

@@ -31,14 +31,14 @@ public class HomeFragment extends Fragment {
     private TextView home_name_textView;
     private TextView home_date_textView;
     private RecyclerView noterecyclerView;
-    private RecyclerView dailyrecyclerView;
+
     private TextView textView;
     private Button clickbutton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_home, container, false);
-        textView = root.findViewById(R.id.text_home);
+
 
         findlist();
         findView();
@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
         });
 
         home_name_textView = root.findViewById(R.id.home_name_TextView);
-        home_name_textView.setText(setGreetings() + " 討厭鬼 藥師 \n Welcome Back");
+        home_name_textView.setText(setGreetings() + " 討厭鬼 藥師  Welcome Back");
         home_date_textView = root.findViewById(R.id.home_date_TextView);
         home_date_textView.setText(MyDateUtils.formatDefaultWithDayOfWeek(Calendar.getInstance()));
         clickbutton = root.findViewById(R.id.clickbutton);
@@ -76,8 +76,8 @@ public class HomeFragment extends Fragment {
         recyclerView = root.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
         List<ApplicationItem> applicationItemList = new ArrayList<>();
-        applicationItemList.add(new ApplicationItem(1, getString(R.string.app_time_attendance_system), R.drawable.icon_immigration, "點我打卡", R.layout.list_daily));
-        applicationItemList.add(new ApplicationItem(2, getString(R.string.app_staff_scheduling_system), R.drawable.icon_app_calendar, "點我排班", R.layout.test));
+        applicationItemList.add(new ApplicationItem(1, "打卡出勤系統", R.drawable.icon_immigration, "點我打卡", R.layout.list_daily));
+        applicationItemList.add(new ApplicationItem(2, "員工排班系統", R.drawable.icon_app_date, "點我排班", R.layout.test));
         applicationItemList.add(new ApplicationItem(3, "會議室簽到系統", R.drawable.icon_app_conversation, "點我簽到", R.layout.test));
         applicationItemList.add(new ApplicationItem(4, "教學評量系統", R.drawable.icon_app_checklist, "點我評量", R.layout.test));
         applicationItemList.add(new ApplicationItem(5, "採檢及生理量測系統", R.drawable.icon_app_blood_sample, "點我進入", R.layout.test));
@@ -88,34 +88,14 @@ public class HomeFragment extends Fragment {
         List<Task> taskList = new ArrayList<>();
         taskList.add(new Task(1, "教學評量進度", R.drawable.icon_dr, "12月學習日誌未完成"));
         taskList.add(new Task(2, "明日班表", R.drawable.icon_mon_card, "大夜班"));
-        taskList.add(new Task(3, "今日會議", R.drawable.icon_app_conversation, "吃便當"));
+        taskList.add(new Task(3, "今日會議", R.drawable.icon_app_meeting, "吃便當"));
         noterecyclerView.setAdapter(new TaskAdapter(getActivity(), taskList));
 
     }
 
-    public void DailyF() {
-//        List<Daily> dailyList = new ArrayList<>();
-//yyyy-MM-dd hh:mm:ss
-//        List<DailysFragment.Reg> regList = new ArrayList<>();
-//        regList.add(new DailysFragment.Reg("1","A",1300,"140.122.52.52","Android"));
-//        dailyList.add(new Daily("一般藥局","P","13:00","22:00","13:00","17:30","18:00","22:00","on","1",Calendar.getInstance().setTime(new SimpleDateFormat("yyyy/MM/dd").parse("2021/01/04")));
-
-    }
 
     //    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                startActivity(new Intent(getActivity(), SettingsActivity.class));
-                return true;
-            case R.id.action_explanation:
-//                startActivity(new Intent(this, ExplanationActivity.class));
-                return true;
-            case R.id.action_system_management:
-//                startActivity(new Intent(this, ManagementActivity.class));
-                return true;
-            default:
-                return true;
-        }
-    }
+//    public boolean onOptionsItemSelected(MenuItem item) {
+
+//    }
 }

@@ -1,29 +1,28 @@
 package com.lunlun.fenhow1219;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
     public boolean logon =false;
@@ -32,47 +31,99 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_account,R.id.nav_about
-                ,R.id.nav_setting,R.id.nav_meeting,R.id.nav_SignWork)
+                R.id.nav_home,  R.id.nav_app_menu,R.id.nav_account,R.id.nav_about,R.id.nav_setting)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-
-        Intent intentw = new Intent(MainActivity.this,WelcomeActivity.class);
-        startActivity(intentw);
-
-        if(!logon){
-            Intent intent = new Intent(MainActivity.this,Login.class);
-            startActivityForResult(intent, REQUEST_CODE);
-//            startActivity(intent);
-        }
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+//        NavigationUI.setupWithNavController(navigationView, navController);
+        navigationView.setItemIconTintList((ColorStateList)null);
+        navigationView.setNavigationItemSelectedListener(this);
 
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+//    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
+//    @Override
+//    public boolean onSupportNavigateUp() {
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+//                || super.onSupportNavigateUp();
+//    }
+
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_explanation:
+//                startActivity(new Intent(this, ExplanationActivity.class));
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        ((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(Gravity.LEFT);
+        int id = item.getItemId();
+        FragmentManager fm = getSupportFragmentManager();
+        switch (id) {
+            case R.id.nav_login:
+                startActivity(new Intent(this, WelcomeActivity.class));
+                return true;
+            case R.id.nav_home:
+                fm.beginTransaction().replace(R.id.nav_host_fragment, new HomeFragment(), "fragment_home").commit();
+                return true;
+            case R.id.nav_account:
+                fm.beginTransaction().replace(R.id.nav_host_fragment, new Account_Fragment(), "fragment_account").commit();
+                return true;
+            case R.id.nav_setting:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.nav_app_menu:
+                startActivity(new Intent(this, AppMenuActivity.class));
+                return true;
+            default:
+                return true;
+        }
     }
 
     @Override

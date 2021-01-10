@@ -17,7 +17,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="171dp"
                 android:background="@drawable/background_01"
                 android:paddingLeft="15dp"
                 android:paddingTop="10dp"
@@ -40,7 +40,7 @@
                         android:id="@+id/textViewWcode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="0000000000"
+                        android:text="P0708"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#222222"
                         android:textSize="14sp" />
@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="10dp"
-                        android:text="@string/user_name"
+                        android:text="姓名 : 好孩子"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/black"
                         android:textIsSelectable="false"
@@ -122,6 +122,7 @@
                             android:text="@string/use_mobile_signin"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="#ff000000" />
+
                     </LinearLayout>
 
                     <Button
@@ -133,7 +134,9 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:text="綁定行動裝置"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:visibility="visible" />
+
                 </LinearLayout>
 
                 <TextView
@@ -286,7 +289,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:text="建立捷徑"
+                        android:text="建立桌面捷徑"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#ff000000" />
 
@@ -326,11 +329,6 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-    <View
-        android:id="@+id/rootview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 
 </FrameLayout>

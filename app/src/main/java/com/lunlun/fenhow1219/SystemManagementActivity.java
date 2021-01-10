@@ -9,6 +9,6 @@ public class SystemManagementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_system_management);
+        setContentView(R.layout.system_management_activity);
     }
 }

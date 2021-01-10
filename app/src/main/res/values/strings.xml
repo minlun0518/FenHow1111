@@ -66,7 +66,7 @@
     <string name="mobile_id">設備編號</string>
     <string name="need_register">1.每人僅可使用一個行動裝置簽到退\n2.請先為您的行動裝置註冊！\n 3.未註冊的行動裝置無法簽到退！</string>
     <string name="permission_rationale">Contacts permissions are needed for providing email completions.</string>
-    <string name="pos_name">職稱</string>
+    <string name="pos_name">職稱 : 藥師</string>
     <string name="prompt_password">密碼 (門急住、KM、AD密碼或民國年生日)</string>
     <string name="prompt_wcode">員工編號</string>
     <string name="pwd">登入密碼</string>
@@ -82,8 +82,8 @@
     <string name="select_work_dept">選擇工作單位.....</string>
     <string name="shared_preferences_name">ehr</string>
     <string name="shift">班別</string>
-    <string name="signin"> 上班簽到</string>
-    <string name="signout">下班簽退 </string>
+    <string name="signin">上班簽到</string>
+    <string name="signout">下班簽退</string>
     <string name="subject">主題</string>
     <string name="tagmanager_preview_dialog_button">Continue</string>
     <string name="tagmanager_preview_dialog_message">Preview mode updated.</string>
@@ -94,9 +94,9 @@
     <string name="title_activity_signin">簽到退</string>
     <string name="title_activity_user">使用者設定</string>
     <string name="use_mobile_signin">使用行動裝置簽到退</string>
-    <string name="user_department_name">編制單位</string>
+    <string name="user_department_name">編制單位:醫療部</string>
     <string name="user_name">姓名</string>
-    <string name="user_work_department_name">工作單位</string>
+    <string name="user_work_department_name">工作單位:藥劑科</string>
     <string name="wcode">員工編號</string>
     <string name="wifi_seting">Wi-Fi設定</string>
     <string name="work_date">工作日</string>
@@ -122,7 +122,6 @@
     <string name="usebio_finger_summary_off">不使用指紋辨識</string>
     <string name="default_notification_channel_id">default_channel_id</string>
     <string name="default_notification_channel_title">Default Channel</string>
-
 
 
 </resources>

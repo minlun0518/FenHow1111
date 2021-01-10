@@ -1,12 +1,10 @@
 package com.lunlun.fenhow1219;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,8 +20,8 @@ public class SignWorkFragment extends Fragment {
     public ViewPager mViewPager;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.mView = inflater.inflate(R.layout.content_sign_work, container, false);
-//        getActivity().setTitle("簽到退");
+        this.mView = inflater.inflate(R.layout.sign_work_content, container, false);
+        getActivity().setTitle("簽到退");
         setToolbar();
         return this.mView;
     }

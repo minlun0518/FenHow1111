@@ -16,13 +16,11 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-        Date time= Calendar.getInstance().getTime();
-        Log.d(TAG,"時間:"+time);
+        setContentView(R.layout.welcome_activity);
+
         findViewById(R.id.dummy_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 startActivity(new Intent().setClass(WelcomeActivity.this, Login.class));
             }
         });
