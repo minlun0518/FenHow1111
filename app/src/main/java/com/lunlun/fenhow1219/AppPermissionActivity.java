@@ -87,6 +87,7 @@ public class AppPermissionActivity extends AppCompatActivity {
         this.mScrollViewSMS = (ScrollView) findViewById(R.id.scrollViewSMS);
         this.mTextViewDoctorName.setText(this.doctorName);
         this.mTextViewDoctorBBCall.setText(this.doctorBBCall);
+
         this.mButtonSendSMS.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 final String _message = AppPermissionActivity.this.mEditTextMessage.getText().toString().trim();
@@ -109,11 +110,13 @@ public class AppPermissionActivity extends AppCompatActivity {
                 });
                 builder.setNegativeButton((CharSequence) "否", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+
                     }
                 });
                 builder.create().show();
             }
         });
+
         this.mTextViewDefaultMsg1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AppPermissionActivity.this.insertDefaultMsg(AppPermissionActivity.this.mTextViewDefaultMsg1.getText().toString());
@@ -139,6 +142,7 @@ public class AppPermissionActivity extends AppCompatActivity {
                 AppPermissionActivity.this.insertDefaultMsg(AppPermissionActivity.this.mTextViewDefaultMsg5.getText().toString());
             }
         });
+
         this.mButtonMic.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent("android.speech.action.RECOGNIZE_SPEECH");

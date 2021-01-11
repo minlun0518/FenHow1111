@@ -47,7 +47,7 @@ public class ChangePasswordDialog extends DialogFragment {
 
     public interface OnChangePasswordDialogActionCallback {
         void onDialogDismiss();
-        void onUsePassword();
+        void onClose();
         void onCancel();
     }
 
@@ -81,11 +81,11 @@ public class ChangePasswordDialog extends DialogFragment {
         this.mTextViewChangePwdError = (TextView) view.findViewById(R.id.textViewChangePwdError);
 
 //        mUsePasswordBtn.setVisibility(View.GONE);
-        mUsePasswordBtn.setOnClickListener(new View.OnClickListener() {
+        this.mButtonClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mDialogActionCallback != null) {
-                    mDialogActionCallback.onUsePassword();
+                    mDialogActionCallback.onClose();
                 }
                 dismiss();
             }
