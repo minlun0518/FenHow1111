@@ -26,12 +26,12 @@
             android:title="打卡出勤系統" />
         <item
             android:id="@+id/nav_staff_scheduling"
-            android:icon="@drawable/icon_id_card"
+            android:icon="@drawable/icon_app_calendar"
             android:title="員工排班系統" />
         <item
             android:id="@+id/nav_pgy"
-            android:icon="@drawable/icon_id_card"
-            android:title="住院醫師評量" />zz
+            android:icon="@drawable/icon_pgy"
+            android:title="住院醫師評量" />
     </group>
 
     <group android:id="@+id/activity_zu">

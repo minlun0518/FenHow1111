@@ -7,37 +7,79 @@
     android:gravity="bottom"
     android:isScrollContainer="true"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/nav_header_desc"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/ic_profile_login" />
-
-    <TextView
-        android:id="@+id/nav_head_tv_name"
+    <RelativeLayout
+        android:id="@+id/lala"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-smallcaps"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/nav_header_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/accent_material_light"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_height="171dp"
+        android:background="@drawable/background_01"
+        android:paddingLeft="0dp"
+        android:paddingTop="5dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp">
 
-    <TextView
-        android:id="@+id/nav_head_tv_mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="@string/nav_header_subtitle"
-        android:textColor="@color/abc_search_url_text_normal" />
+        <ImageView
+            android:id="@+id/imageViewUser"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/cute" />
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="201dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageViewUser"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="3dp"
+            android:layout_toRightOf="@id/imageViewUser"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvWcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="員工編號"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#222222"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="姓名"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"
+                android:textIsSelectable="false"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvWorkDepartmentName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_work_department_name"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvUserPosName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="職稱"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

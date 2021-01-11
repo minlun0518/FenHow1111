@@ -21,7 +21,7 @@ public class SignWorkFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.mView = inflater.inflate(R.layout.sign_work_content, container, false);
-        getActivity().setTitle("簽到退");
+        getActivity().setTitle("打卡出勤系統");
         setToolbar();
         return this.mView;
     }

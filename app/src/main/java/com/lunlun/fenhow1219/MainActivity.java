@@ -1,12 +1,20 @@
 package com.lunlun.fenhow1219;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +29,16 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -28,6 +46,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean logon =false;
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int REQUEST_CODE = 101;
+    private TextView mTVWcode;
+    private TextView mTVUserName;
+    private TextView mTVUserWorkDepartmentName;
+    private TextView mTVUserPosName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,30 +68,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home,  R.id.nav_app_menu,R.id.nav_account,R.id.nav_about,R.id.nav_setting)
+                R.id.nav_home, R.id.nav_app_menu,R.id.nav_account,R.id.nav_setting)
                 .setDrawerLayout(drawer)
                 .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
+
         navigationView.setItemIconTintList((ColorStateList)null);
         navigationView.setNavigationItemSelectedListener(this);
 
-    }
+        this.mTVWcode = (TextView) findViewById(R.id.tvWcode);
+        this.mTVUserName = (TextView) findViewById(R.id.tvUserName);
+        this. mTVUserWorkDepartmentName = (TextView) findViewById(R.id.tvWorkDepartmentName);
+        this.mTVUserPosName = (TextView) findViewById(R.id.tvUserPosName);
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
 //    @Override
@@ -94,6 +105,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return true;
             case R.id.action_explanation:
 //                startActivity(new Intent(this, ExplanationActivity.class));
+                return true;
+            case R.id.action_system_management:
+                startActivity(new Intent(this, SystemManagementActivity.class));
                 return true;
             default:
                 return true;
@@ -134,9 +148,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if(resultCode==RESULT_OK){
                 logon=true;
                 String user_name = getSharedPreferences("login", MODE_PRIVATE).getString("wname", "低否");
-                TextView nav_head_tv_name =findViewById(R.id.nav_head_tv_name);
+//                TextView nav_head_tv_name =findViewById(R.id.nav_head_tv_name);
                 Log.d("RESULT",user_name);
-                nav_head_tv_name.setText(user_name);
+//                nav_head_tv_name.setText(user_name);
+
+                InputStream mInputStream = getResources().openRawResource(R.raw.mydate);
+                BufferedReader mBufferedReader = new BufferedReader(new InputStreamReader(mInputStream));
+                String mdata;
+
+                StringBuilder mStringBuilder = new StringBuilder();
+                try {
+                    while ((mdata = mBufferedReader.readLine()) != null) {
+                        mStringBuilder.append(mdata);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JSONObject mjsonObject ;
+                try {
+                    mjsonObject = new JSONObject(mStringBuilder.toString());
+                    this.mTVWcode.setText(mjsonObject.getString("wcode"));
+                    this.mTVUserName.setText(mjsonObject.getString("wname"));
+                    this.mTVUserWorkDepartmentName.setText(mjsonObject.getString("work_dept_name"));
+                    this.mTVUserPosName.setText(mjsonObject.getString("pos_name"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
             }else {
                 Toast.makeText(this, "再見", Toast.LENGTH_LONG).show();

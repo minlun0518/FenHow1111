@@ -1,0 +1,27 @@
+[
+  {
+    "IMEI": "8888888",
+    "EMPLOYEE_ID":10730,
+    "DEVICE_NAME": "我的哀鳳十三",
+    "ISUSING": true
+  },
+  {
+    "IMEI": "858489734543",
+    "EMPLOYEE_ID":10730,
+    "DEVICE_NAME": null,
+    "ISUSING": true
+  },
+  {
+    "IMEI": "45324556772",
+    "EMPLOYEE_ID":10730,
+    "DEVICE_NAME": "查理的玩具",
+    "ISUSING": true
+  },
+  {
+    "IMEI": "457467598",
+    "EMPLOYEE_ID":10730,
+    "DEVICE_NAME": null,
+    "ISUSING": false
+  }
+]
+

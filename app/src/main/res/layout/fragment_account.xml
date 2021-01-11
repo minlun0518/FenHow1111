@@ -41,7 +41,7 @@
                         android:id="@+id/textViewWcode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="P0708"
+                        android:text="員工編號"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#222222"
                         android:textSize="14sp" />
@@ -52,20 +52,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="10dp"
-                        android:text="姓名 : 好孩子"
+                        android:text="姓名 :"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/black"
                         android:textIsSelectable="false"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/textViewUserDepartmentName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/user_department_name"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/black" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/textViewUserDepartmentName"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/user_department_name"-->
+<!--                        android:textAppearance="?android:attr/textAppearanceSmall"-->
+<!--                        android:textColor="@color/black" />-->
 
                     <TextView
                         android:id="@+id/textViewUserWorkDepartmentName"
@@ -95,7 +95,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginRight="13dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/icon_dr" />
+                    app:srcCompat="@drawable/cute" />
             </RelativeLayout>
 
             <LinearLayout
@@ -127,16 +127,15 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/buttonUserRegister"
+                        android:id="@+id/buttonUserDeviceRegister"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="綁定行動裝置"
-                        android:textSize="16sp"
-                        android:visibility="visible" />
+                        android:text="變更裝置名稱"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -222,7 +221,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/textView52"
@@ -301,7 +301,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:checked="true" />
+                        android:checked="false" />
                 </LinearLayout>
 
                 <TextView

@@ -33,7 +33,6 @@ public class ChangePwdActivity extends AppCompatActivity {
     }
 
     private void initView() {
-//        this.spref = MySingleton.getInstance(getApplication()).getSharedPreferences();
         this.mButtonConfirm = (Button) findViewById(R.id.buttonConfirm);
         this.mButtonCancel = (Button) findViewById(R.id.buttonCancel);
         this.mButtonClose = (Button) findViewById(R.id.buttonClose);

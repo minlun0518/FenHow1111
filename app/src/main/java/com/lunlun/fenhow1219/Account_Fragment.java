@@ -1,8 +1,7 @@
 package com.lunlun.fenhow1219;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,129 +15,143 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class Account_Fragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = Account_Fragment.class.getSimpleName();
 
     private Button mButtonPwdChange;
     private Switch mSwitchAutoSignIn;
-    private Button mButtonUserRegister;
-    private View mLinearLayoutChangePassword;
-    private Switch mSwitchCreateSigninShortcutAuto;
-    private TextView mTextViewPwdInfo;
-    private TextView mTextViewRegisterInfo;
-    private TextView mTextViewRegisterNotice;
+    private Button mButtonUserDeviceRegister;
+
     private TextView mTextViewUserDepartmentName;
     private TextView mTextViewUserName;
     private TextView mTextViewUserPosName;
     private TextView mTextViewUserWorkDepartmentName;
     private TextView mTextViewWcode;
-    private View root;
-    private View root2;
 
-    private Button mButtonCancel;
-    private Button mButtonClose;
-    private Button mButtonConfirm;
     private EditText mEditTextPwdConfirm;
     private EditText mEditTextPwdNew;
     public TextView mTextViewChangePwdError;
-    boolean _running = false;
 
-
-    public Account_Fragment() {
-        // Required empty public constructor
-    }
-
-    public static Account_Fragment newInstance(String param1, String param2) {
-        Account_Fragment fragment = new Account_Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
+    private View root;
+    private View root2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_account, container, false);
-        root2 = inflater.inflate(R.layout.activity_change_pwd, container, false);
+        root2 = inflater.inflate(R.layout.change_password_dialog, container, false);
 
-        mButtonPwdChange = (Button) root.findViewById(R.id.buttonPwdChange);
-
-        this.mTextViewWcode = (TextView) root.findViewById(R.id.textViewWcode);
-        this.mTextViewUserName = (TextView) root.findViewById(R.id.textViewUserName);
-        this.mTextViewUserDepartmentName = (TextView) root.findViewById(R.id.textViewUserDepartmentName);
-        this.mTextViewUserWorkDepartmentName = (TextView) root.findViewById(R.id.textViewUserWorkDepartmentName);
-        this.mTextViewUserPosName = (TextView) root.findViewById(R.id.textViewUserPosName);
-        this.mTextViewRegisterInfo = (TextView) root.findViewById(R.id.textViewRegisterInfo);
-//        this.mTextViewRegisterNotice = (TextView) root.findViewById(R.id.textViewRegisterNotice);
-        this.mTextViewPwdInfo = (TextView) root.findViewById(R.id.textViewPwdInfo);
-        this.mButtonUserRegister = (Button) root.findViewById(R.id.buttonUserRegister);
-        this.mButtonPwdChange = (Button) root.findViewById(R.id.buttonPwdChange);
-        this.mSwitchCreateSigninShortcutAuto = (Switch) root.findViewById(R.id.switchCreateSigninShortcutAuto);
-        this.mSwitchAutoSignIn = (Switch) root.findViewById(R.id.switchAutoSignIn);
-        this.mLinearLayoutChangePassword = root.findViewById(R.id.linearLayoutChangePassword);
         initview();
-
         return root;
     }
 
     private void initview() {
-        this.mSwitchCreateSigninShortcutAuto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        InputStream mInputStream = getResources().openRawResource(R.raw.mydate);
+        BufferedReader mBufferedReader = new BufferedReader(new InputStreamReader(mInputStream));
+        String mdata;
 
+        StringBuilder mStringBuilder = new StringBuilder();
+        try {
+            while ((mdata = mBufferedReader.readLine()) != null) {
+                mStringBuilder.append(mdata);
             }
-        });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.mTextViewWcode = (TextView) root.findViewById(R.id.textViewWcode);
+        this.mTextViewUserName = (TextView) root.findViewById(R.id.textViewUserName);
+//        this.mTextViewUserDepartmentName = (TextView) root.findViewById(R.id.textViewUserDepartmentName);
+        this.mTextViewUserWorkDepartmentName = (TextView) root.findViewById(R.id.textViewUserWorkDepartmentName);
+        this.mTextViewUserPosName = (TextView) root.findViewById(R.id.textViewUserPosName);
+        int _days=0;
+
+        this.mButtonUserDeviceRegister = (Button) root.findViewById(R.id.buttonUserDeviceRegister);
+        this.mButtonPwdChange = (Button) root.findViewById(R.id.buttonPwdChange);
+        this.mSwitchAutoSignIn = (Switch) root.findViewById(R.id.switchAutoSignIn);
+
+        JSONObject mjsonObject = null;
+        try {
+            mjsonObject = new JSONObject(mStringBuilder.toString());
+            this.mTextViewWcode.setText(mjsonObject.getString("wcode"));
+            this.mTextViewUserName.setText(mjsonObject.getString("wname"));
+//            this.mTextViewUserDepartmentName.setText(mjsonObject.getString("dept_name"));
+            this.mTextViewUserWorkDepartmentName.setText(mjsonObject.getString("work_dept_name"));
+            this.mTextViewUserPosName.setText(mjsonObject.getString("pos_name"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //自動簽到/打卡
         this.mSwitchAutoSignIn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
             }
         });
 
-
-        mButtonPwdChange.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-//                getActivity().startActivity(new Intent(getActivity(), ChangePwdActivity.class));
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.Theme_Design_BottomSheetDialog);
-                builder.setView(root2);
+        //如果是私人設備-需要綁定裝置
+        //mButtonUserDeviceRegister.setVisibility(true);
+        this.mButtonUserDeviceRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("綁定私人設備");
+                builder.setMessage("請自訂裝置名稱:");
+                EditText mEditTextDeviceName = new EditText(getContext());
+                builder.setView(mEditTextDeviceName);
+                builder.setPositiveButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setNegativeButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //!!將名稱存入設定
+                        Toast.makeText(getContext(), mEditTextDeviceName.getText(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 builder.create().show();
-
-                mButtonConfirm = (Button) root2.findViewById(R.id.buttonConfirm);
-                mButtonCancel = (Button) root2.findViewById(R.id.buttonCancel);
-                mButtonClose = (Button) root2.findViewById(R.id.buttonClose);
-                mEditTextPwdNew = (EditText) root2.findViewById(R.id.editTextPwdNew);
-                mEditTextPwdConfirm = (EditText) root2.findViewById(R.id.editTextPwdConfirm);
-                mTextViewChangePwdError = (TextView) root2.findViewById(R.id.textViewChangePwdError);
-                mButtonConfirm.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        if (!Account_Fragment.this._running) {
-                            Account_Fragment.this.doChange();
-                        }
-                    }
-                });
-                mButtonCancel.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        getActivity().finish();
-                    }
-                });
-                mButtonClose.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-
-                    }
-                });
-
             }
         });
 
+        //變更密碼
+        mButtonPwdChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEditTextPwdNew = (EditText) root2.findViewById(R.id.editTextPwdNew);
+                mEditTextPwdConfirm = (EditText) root2.findViewById(R.id.editTextPwdConfirm);
+                mTextViewChangePwdError = (TextView) root2.findViewById(R.id.textViewChangePwdError);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("變更密碼");
+                builder.setView(root2);
+                builder.setPositiveButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setNegativeButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Account_Fragment.this.doChange();
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.create().show();
+            }
+        });
     }
 
     public void doChange() {
@@ -183,7 +196,6 @@ public class Account_Fragment extends Fragment {
             focusView.requestFocus();
             return;
         }
-
     }
 
 }

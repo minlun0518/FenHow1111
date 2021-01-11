@@ -1,6 +1,7 @@
 package com.lunlun.fenhow1219;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -53,6 +54,10 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_activity);
+
+        SignUp.this.setTitle("註冊");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         textInputEditTextEmployeeId = findViewById(R.id.employeeId);
         textInputEditTextEmail = findViewById(R.id.email);

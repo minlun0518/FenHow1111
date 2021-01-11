@@ -24,19 +24,19 @@
             android:title="所有功能" />
     </group>
 
-    <group android:id="@+id/activitySystem">
-        <item
-            android:id="@+id/nav_setting"
-            android:icon="@drawable/icon_setting"
-            android:title="設定" />
-        <item
-            android:id="@+id/nav_Logout"
-            android:icon="@drawable/ic_out"
-            android:title="Log Out" />
-        <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/icon_about"
-            android:title="關於 APP" />
-    </group>
+<!--    <group android:id="@+id/activitySystem">-->
+<!--        <item-->
+<!--            android:id="@+id/nav_setting"-->
+<!--            android:icon="@drawable/icon_setting"-->
+<!--            android:title="設定" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_Logout"-->
+<!--            android:icon="@drawable/ic_out"-->
+<!--            android:title="Log Out" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_about"-->
+<!--            android:icon="@drawable/icon_about"-->
+<!--            android:title="關於 APP" />-->
+<!--    </group>-->
 
 </menu>

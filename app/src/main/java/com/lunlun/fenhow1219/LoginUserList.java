@@ -1,13 +1,13 @@
 package com.lunlun.fenhow1219;
 
-public class HotUserModel {
+public class LoginUserList {
     private int position;
     private String userID;
     private String userEmail;
     private String userName;
     private String userPassword;
 
-    public HotUserModel(int position, String userID, String userEmail, String userName, String userPassword) {
+    public LoginUserList(int position, String userID, String userEmail, String userName, String userPassword) {
         this.position=position;
         this.userID = userID;
         this.userEmail = userEmail;

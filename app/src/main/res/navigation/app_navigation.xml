@@ -8,9 +8,8 @@
     <activity
         android:id="@+id/nav_app_menu"
         android:name="com.lunlun.fenhow1219.AppMenuActivity"
-        android:label="APP總攬"
+        android:label="所有功能"
         tools:layout="@layout/app_menu_activity" />
-
     <activity
         android:id="@+id/nav_setting"
         android:name="com.lunlun.fenhow1219.SettingsActivity"

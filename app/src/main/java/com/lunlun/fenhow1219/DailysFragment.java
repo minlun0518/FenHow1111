@@ -28,16 +28,12 @@ public class DailysFragment extends Fragment {
     public Boolean loading = false;
     public List<Daily> mLists = new ArrayList();
     public RecyclerView mRecyclerView;
-    /* access modifiers changed from: private */
     public SharedPreferences mSpref;
-    /* access modifiers changed from: private */
     public SwipeRefreshLayout mSwipeRefreshLayout;
-    /* access modifiers changed from: private */
     public View mView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.mView = inflater.inflate(R.layout.fragment_daily, container, false);
-
         initRecyclerView();
         return this.mView;
     }

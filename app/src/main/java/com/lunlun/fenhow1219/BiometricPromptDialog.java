@@ -71,7 +71,6 @@ public class BiometricPromptDialog extends DialogFragment {
                 if (mDialogActionCallback != null) {
                     mDialogActionCallback.onUsePassword();
                 }
-
                 dismiss();
             }
         });

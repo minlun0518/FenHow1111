@@ -9,7 +9,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -24,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import java.text.SimpleDateFormat;
@@ -103,7 +101,7 @@ public class SignInFragment extends Fragment {
         this.mLinearLayoutSection1 = this.mView.findViewById(R.id.LinearLayoutSection1);
         this.mLinearLayoutSection2 = this.mView.findViewById(R.id.LinearLayoutSection2);
         this.mLinearLayoutPwdInfo = this.mView.findViewById(R.id.LinearLayoutPwdInfo);
-        this.mButtonUserRegister = (Button) this.mView.findViewById(R.id.buttonUserRegister);
+        this.mButtonUserRegister = (Button) this.mView.findViewById(R.id.buttonUserDeviceRegister);
         this.mImageViewWifi = (ImageView) this.mView.findViewById(R.id.imageViewWifi);
         this.mLayoutSigninButton = this.mView.findViewById(R.id.layoutSigninButton);
         this.mRadioButtonToday.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

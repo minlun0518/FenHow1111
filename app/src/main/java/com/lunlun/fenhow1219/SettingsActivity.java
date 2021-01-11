@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -19,25 +20,37 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 public class SettingsActivity extends AppCompatActivity implements
-        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback, NavigationView.OnNavigationItemSelectedListener {
+        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     private static final String TITLE_TAG = "settingsActivityTitle";
-    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.settings, new HeaderFragment())
+                    .replace(R.id.settings_FramLayout, new HeaderFragment())
                     .commit();
         } else {
             setTitle(savedInstanceState.getCharSequence(TITLE_TAG));
         }
+
+        SettingsActivity.this.setTitle("偏好設定");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.setting_toolbar);
+        setSupportActionBar(toolbar);
+
+//        DrawerLayout drawer = findViewById(R.id.drawer_layout_setting);
+
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.setDrawerListener(toggle);
+//        toggle.syncState();
+
         getSupportFragmentManager().addOnBackStackChangedListener(
                 new FragmentManager.OnBackStackChangedListener() {
                     @Override
@@ -51,20 +64,6 @@ public class SettingsActivity extends AppCompatActivity implements
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout_s);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view_s);
-
-        navigationView.setItemIconTintList((ColorStateList)null);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -93,31 +92,11 @@ public class SettingsActivity extends AppCompatActivity implements
         fragment.setTargetFragment(caller, 0);
         // Replace the existing Fragment with the new Fragment
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.settings, fragment)
+                .replace(R.id.settings_FramLayout, fragment)
                 .addToBackStack(null)
                 .commit();
         setTitle(pref.getTitle());
         return true;
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        ((DrawerLayout) findViewById(R.id.drawer_layout_s)).closeDrawer(Gravity.LEFT);
-        int id = item.getItemId();
-        FragmentManager fm = getSupportFragmentManager();
-        switch (id) {
-            case R.id.nav_login:
-                startActivity(new Intent(this, WelcomeActivity.class));
-                return true;
-            case R.id.nav_home:
-                fm.beginTransaction().replace(R.id.nav_host_fragment, new HomeFragment(), "fragment_home").commit();
-                return true;
-            case R.id.nav_account:
-                fm.beginTransaction().replace(R.id.nav_host_fragment, new Account_Fragment(), "fragment_account").commit();
-                return true;
-            default:
-                return true;
-        }
     }
 
     public static class HeaderFragment extends PreferenceFragmentCompat {
@@ -140,6 +119,26 @@ public class SettingsActivity extends AppCompatActivity implements
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.fast_login_preferences, rootKey);
+
+            Preference preferenceUseBio =findPreference("usebio");
+            preferenceUseBio.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if(newValue.equals("true")){
+                        //確認裝置是否支援
+                        boolean uDevicdBio =true;
+                        if(uDevicdBio){
+                            newValue=false;
+                            preferenceUseBio.setDefaultValue(false);
+                            preferenceUseBio.setSummary("您的裝置不支援生物辨識");
+                            preferenceUseBio.setEnabled(false);
+                        }
+
+                    }
+                    Toast.makeText(getContext(),preference.getKey()+":"+newValue,Toast.LENGTH_LONG).show();
+                    return true;
+                }
+            });
         }
     }
 
