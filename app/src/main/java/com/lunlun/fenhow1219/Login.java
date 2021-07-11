@@ -1,5 +1,6 @@
 package com.lunlun.fenhow1219;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,12 +18,10 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -30,6 +29,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,10 +61,10 @@ import javax.net.ssl.X509TrustManager;
 public class Login extends AppCompatActivity {
     private BiometricPromptManager mManager;
     private static final String TAG = Login.class.getSimpleName();
-    private static final int REQUEST_CODE = 101;
+    private static final int REQUEST_CODE_LOGIN = 101;
 
     boolean isMail = false;
-    private Switch sw;
+    private Switch mSwitchEmailId;
 
     private String IMEINumber;
     private TextView imei;
@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity {
     private AlertDialog.Builder builder2;
 
     private String[] mimeiTestList;
-    private int mdeviceCont;
+    private int mDeviceCont;
     private boolean[] mImeiTestCheck;
     private List<Imei> imeiList;
 
@@ -93,6 +93,7 @@ public class Login extends AppCompatActivity {
         findViews();
         handleSSLHandshake();
         checkDivicd();
+        choouseDevice();
     }
 
     //辨識裝置
@@ -150,7 +151,6 @@ public class Login extends AppCompatActivity {
                         if (putData.onComplete()) {
                             progressBar.setVisibility(View.GONE);
                             String result = putData.getResult();
-                            Log.d(TAG, "result: " + result);
                             if (result.equals("Login Success")) {
                                 Toast.makeText(getApplicationContext(), "登入成功", Toast.LENGTH_LONG).show();
                                 getIntent().putExtra("USER_NAME", textInputEditTextIDorEmail.getText().toString());
@@ -182,7 +182,7 @@ public class Login extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        mdeviceCont = 0;
+        mDeviceCont = 0;
         mimeiTestList = new String[3];
         imeiList = new ArrayList<>();
 
@@ -197,7 +197,7 @@ public class Login extends AppCompatActivity {
                 imeiList.add(new Imei(aIMEI, aEMPLOYEE_id, aDEVICE_name, aISUSING));
                 Log.d(TAG, "第" + i + "筆資料的 IMEI=" + aIMEI + "，EMPLOYEE_id= " + aEMPLOYEE_id + "，DEVICE_name=" + aDEVICE_name + "，ISUSING = " + aISUSING);
                 if (aISUSING == true) {
-                    mdeviceCont++;
+                    mDeviceCont++;
                     mimeiTestList[i] = "裝置名稱: " + aDEVICE_name + " (序號為: " + aIMEI + " )";
                 }
             }
@@ -205,7 +205,7 @@ public class Login extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (mdeviceCont > 2) {
+        if (mDeviceCont > 2) {
             builder = new AlertDialog.Builder(Login.this);
             builder.setIcon(R.drawable.icon_stop);
             builder.setTitle("您已綁定三個裝置,請選擇刪除裝置");
@@ -251,17 +251,18 @@ public class Login extends AppCompatActivity {
         textInputEditTextPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         //切換登入方式
-        sw = findViewById(R.id.sw);
-        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mSwitchEmailId = findViewById(R.id.switchEmailId);
+        mSwitchEmailId.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 isMail = isChecked;
+                mSwitchEmailId.setText(isMail ? "使用"+getString(R.string.employeeid) + "登入" : "使用"+getString(R.string.email)+ "登入");
                 textInputLayout.setHint(isMail ? getString(R.string.employeeid) : getString(R.string.email));
             }
         });
 
-        CheckBox cb = findViewById(R.id.seepw);
-        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        CheckBox mPasswordCheckBox = findViewById(R.id.passwordCheckBox);
+        mPasswordCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -294,18 +295,18 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 if (isMail) {
                     runrun("employee_id", getString(R.string.idlogin_php));
-                    rememberme_checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            if (isChecked) {
-                                SharedPreferences setting = getSharedPreferences("test", MODE_PRIVATE);
-                                textInputEditTextIDorEmail.setText(setting.getString("PREF_USERID",userInput));
-                            }
-                        }
-                    });
                 } else {
                     runrun("email", getString(R.string.login_php));
                 }
+                rememberme_checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            SharedPreferences setting = getSharedPreferences("PREF_USERID", MODE_PRIVATE);
+                            textInputEditTextIDorEmail.setText(setting.getString("PREF_USERID",userInput));
+                        }
+                    }
+                });
             }
         });
 
@@ -326,7 +327,9 @@ public class Login extends AppCompatActivity {
                 Snackbar.make(view, "目前不支援臉部辨識", Snackbar.LENGTH_LONG).show();
             }
         });
+    }
 
+    private void choouseDevice(){
         //選擇題
         builder2 = new AlertDialog.Builder(Login.this);
         builder2.setIcon(R.drawable.icon_stop);
@@ -388,7 +391,7 @@ public class Login extends AppCompatActivity {
 
                 @Override
                 public void onCancel() {
-                    Toast.makeText(Login.this, "取消辨識", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Login.this, "取消辨識", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -467,20 +470,40 @@ public class Login extends AppCompatActivity {
         }
     }
 
+
     public void verifiedsuccessfully() {
+//        Bundle bag = new Bundle();
+//        bag.putString("LOGIN_IMEI",IMEINumber);
+//        Log.d("LOGIN_IMEI",IMEINumber);
+//        bag.putString("LOGIN_ID","A0708");
+//        Log.d("LOGIN_IMEI","A0708");
+//        bag.putString("LOGIN_NAME","白白");
+//        Log.d("LOGIN_NAME","白白");
+
+//        bag.putString("wcode","A0708");
+//        bag.putString("wname","白白");
+//        bag.putString("work_dept_name","藥劑科");
+//        Log.d("work_dept_name","藥劑科");
+//        bag.putString("pos_name","藥師");
+//        Log.d("pos_name","藥師");
+
+        Intent intent=new Intent(this,MainActivity.class);
+//        intent.putExtras(bag);
+        setResult(RESULT_OK,intent);
+
+//        startActivity(new Intent().setClass(Login.this, HomeFragment.class));
 //        getIntent().putExtra("LOGIN_IMEI",imei.toString());
-        getIntent().putExtra("LOGIN_IMEI", IMEINumber);
+//        getIntent().putExtra("LOGIN_IMEI", IMEINumber);
 //        getIntent().putExtra("LOGIN_ID",textInputEditTextIDorEmail.toString());
-        getIntent().putExtra("LOGIN_ID", "A0708");
-        setResult(RESULT_OK, getIntent());
-//        startActivity(MainActivity);
+//        getIntent().putExtra("LOGIN_ID", "A0708");
+//        setResult(RESULT_OK, getIntent());
         finish();
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
-            case REQUEST_CODE: {
+            case REQUEST_CODE_LOGIN: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, "Permission granted.", Toast.LENGTH_SHORT).show();
                 } else {

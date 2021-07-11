@@ -43,13 +43,14 @@ import java.io.InputStreamReader;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
-    public boolean logon =false;
+    private boolean logon =false;
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final int REQUEST_CODE = 101;
+    private static final int REQUEST_CODE_LOGIN = 101;
     private TextView mTVWcode;
     private TextView mTVUserName;
     private TextView mTVUserWorkDepartmentName;
     private TextView mTVUserPosName;
+    private Bundle bag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +76,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setItemIconTintList((ColorStateList)null);
         navigationView.setNavigationItemSelectedListener(this);
 
-        this.mTVWcode = (TextView) findViewById(R.id.tvWcode);
-        this.mTVUserName = (TextView) findViewById(R.id.tvUserName);
-        this. mTVUserWorkDepartmentName = (TextView) findViewById(R.id.tvWorkDepartmentName);
-        this.mTVUserPosName = (TextView) findViewById(R.id.tvUserPosName);
-
+        mTVWcode = (TextView) findViewById(R.id.tvWcode);
+        mTVUserName = (TextView) findViewById(R.id.tvUserName);
+        mTVUserWorkDepartmentName = (TextView) findViewById(R.id.tvWorkDepartmentName);
+        mTVUserPosName = (TextView) findViewById(R.id.tvUserPosName);
     }
+
 
 //    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -121,16 +122,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager fm = getSupportFragmentManager();
         switch (id) {
             case R.id.nav_login:
-                startActivity(new Intent(this, WelcomeActivity.class));
+                startActivityForResult(new Intent(this, WelcomeActivity.class),REQUEST_CODE_LOGIN);
                 return true;
             case R.id.nav_home:
                 fm.beginTransaction().replace(R.id.nav_host_fragment, new HomeFragment(), "fragment_home").commit();
                 return true;
             case R.id.nav_account:
                 fm.beginTransaction().replace(R.id.nav_host_fragment, new Account_Fragment(), "fragment_account").commit();
-                return true;
-            case R.id.nav_setting:
-                startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.nav_app_menu:
                 startActivity(new Intent(this, AppMenuActivity.class));
@@ -143,41 +141,58 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==REQUEST_CODE){
+        bag = getIntent().getExtras();
+        if(requestCode==REQUEST_CODE_LOGIN){
             if(resultCode==RESULT_OK){
                 logon=true;
+//                findViews();
+
                 String user_name = getSharedPreferences("login", MODE_PRIVATE).getString("wname", "低否");
 //                TextView nav_head_tv_name =findViewById(R.id.nav_head_tv_name);
                 Log.d("RESULT",user_name);
 //                nav_head_tv_name.setText(user_name);
 
-                InputStream mInputStream = getResources().openRawResource(R.raw.mydate);
-                BufferedReader mBufferedReader = new BufferedReader(new InputStreamReader(mInputStream));
-                String mdata;
+                TextView home_name_textView=findViewById(R.id.home_name_TextView);
+//                home_name_textView.setText(HomeFragment.setGreetings() + " 測試中   Welcome Back");
 
-                StringBuilder mStringBuilder = new StringBuilder();
-                try {
-                    while ((mdata = mBufferedReader.readLine()) != null) {
-                        mStringBuilder.append(mdata);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                JSONObject mjsonObject ;
-                try {
-                    mjsonObject = new JSONObject(mStringBuilder.toString());
-                    this.mTVWcode.setText(mjsonObject.getString("wcode"));
-                    this.mTVUserName.setText(mjsonObject.getString("wname"));
-                    this.mTVUserWorkDepartmentName.setText(mjsonObject.getString("work_dept_name"));
-                    this.mTVUserPosName.setText(mjsonObject.getString("pos_name"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                InputStream mInputStream = getResources().openRawResource(R.raw.mydate);
+//                BufferedReader mBufferedReader = new BufferedReader(new InputStreamReader(mInputStream));
+//                String mdata;
+//
+//                StringBuilder mStringBuilder = new StringBuilder();
+//                try {
+//                    while ((mdata = mBufferedReader.readLine()) != null) {
+//                        mStringBuilder.append(mdata);
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                JSONObject mjsonObject ;
+//                try {
+//                    mjsonObject = new JSONObject(mStringBuilder.toString());
+//                    this.mTVWcode.setText(mjsonObject.getString("wcode"));
+//                    this.mTVUserName.setText(mjsonObject.getString("wname"));
+//                    this.mTVUserWorkDepartmentName.setText(mjsonObject.getString("work_dept_name"));
+//                    this.mTVUserPosName.setText(mjsonObject.getString("pos_name"));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
 
             }else {
                 Toast.makeText(this, "再見", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    private void findViews() {
+        String LOGIN_ID =bag.getString("LOGIN_ID");
+        String LOGIN_NAME =bag.getString("LOGIN_NAME");
+        String work_dept_name =bag.getString("work_dept_name");
+        String pos_name =bag.getString("pos_name");
+
+        mTVWcode.setText(LOGIN_ID);
+        mTVUserName.setText(LOGIN_NAME);
+        mTVUserWorkDepartmentName.setText(work_dept_name);
+        mTVUserPosName.setText(pos_name);
     }
 }

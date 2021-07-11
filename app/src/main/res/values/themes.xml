@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/statue</item>
+
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/white</item>
 
@@ -18,13 +19,29 @@
         <item name="colorAccent">@color/fresh_green</item>
         <item name="colorControlHighlight">@color/cathayhospital5</item>
         <item name="colorButtonNormal">@color/gray</item>
+
+        <item name="toolbarStyle">@style/Wight.Theme.FenHow1219.NoActionBar.Toolbar</item>
+
     </style>
+
+<!--    <style name="Theme.FenHow1219.NoActionBar.Widget.AppCompat.Toolbar" parent="Widget.AppCompat.Toolbar">-->
+<!--        <item name="android:background">@drawable/app_bar_background</item>-->
+<!--        <item name="android:titleTextColor">@color/cathayhospital4</item>-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">?attr/actionBarSize</item>-->
+<!--    </style>-->
 
     <style name="Theme.FenHow1219.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+     </style>
 
-    </style>
+<!--    <style name="Theme.FenHow1219." parent="Widget.AppCompat.Toolbar">-->
+<!--        <item name="android:background">@drawable/app_bar_background</item>-->
+<!--        <item name="android:titleTextColor">@color/cathayhospital4</item>-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">?attr/actionBarSize</item>-->
+<!--    </style>-->
 
     <style name="Theme.FenHow1219.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

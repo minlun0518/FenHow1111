@@ -84,10 +84,10 @@ public class AppMenuActivity extends AppCompatActivity implements NavigationView
         FragmentManager fm = getSupportFragmentManager();
         switch (id) {
             case R.id.nav_lab:
-                startActivity(new Intent(this, WelcomeActivity.class));
+//                startActivity(new Intent(this, WelcomeActivity.class));
                 return true;
             case R.id.nav_critical_value:
-                fm.beginTransaction().replace(R.id.LinearLayoutFragment, new HomeFragment(), "fragment_home").commit();
+//                fm.beginTransaction().replace(R.id.LinearLayoutFragment, new HomeFragment(), "fragment_home").commit();
                 return true;
             case R.id.nav_meeting:
                 startActivity(new Intent(this, MeetingActivity.class));
@@ -96,13 +96,17 @@ public class AppMenuActivity extends AppCompatActivity implements NavigationView
                 startActivity(new Intent(this, SignWorkActivity.class));
                 return true;
             case R.id.nav_staff_scheduling:
-                fm.beginTransaction().replace(R.id.LinearLayoutFragment, new Account_Fragment(), "fragment_account").commit();
+//                fm.beginTransaction().replace(R.id.LinearLayoutFragment, new Account_Fragment(), "fragment_account").commit();
                 return true;
             case R.id.nav_pgy:
-                startActivity(new Intent(this, SettingsActivity.class));
+//                startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.nav_environmental_inspection:
-                fm.beginTransaction().replace(R.id.LinearLayoutFragment, new HomeFragment(), "fragment_app").commit();
+//                fm.beginTransaction().replace(R.id.LinearLayoutFragment, new HomeFragment(), "fragment_app").commit();
+                return true;
+            case R.id.nav_home:
+                startActivity(new Intent(this, HomeFragment.class));
+                return true;
             default:
                 return true;
         }

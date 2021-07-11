@@ -130,7 +130,6 @@ public class AppMenuFragment extends Fragment {
                         text.setTextColor(getResources().getColor(R.color.cathayhospital3));
                     }
                 }
-
             }
             return row;
         }
@@ -139,7 +138,7 @@ public class AppMenuFragment extends Fragment {
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(getActivity(), AppPermissionActivity.class);
+
                     if(!appStatue[position]){
                         new AlertDialog.Builder(getActivity())
                                 .setIcon(appImageId[position])
@@ -148,7 +147,10 @@ public class AppMenuFragment extends Fragment {
                                 .setPositiveButton("是", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
+                                        Intent intent = new Intent(getActivity(), AppPermissionActivity.class);
                                         startActivity(intent);
+                                        dialogInterface.dismiss();
+                                        getActivity().finish();
                                     }
                                 })
                                 .setNeutralButton("否",null)
@@ -158,6 +160,7 @@ public class AppMenuFragment extends Fragment {
                                 .setAction("Action", null).show();
 //                        Intent login = new Intent(getContext(), Login.class);
 ////                        startActivity(login);
+
                     }
                 }
             });

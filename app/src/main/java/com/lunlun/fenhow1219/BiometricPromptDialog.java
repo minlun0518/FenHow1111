@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class BiometricPromptDialog extends DialogFragment {
     private TextView mCancelBtn;
     private Activity mActivity;
     private OnBiometricPromptDialogActionCallback mDialogActionCallback;
+    private static final String TAG = BiometricPromptDialog.class.getSimpleName();
 
     public interface OnBiometricPromptDialogActionCallback {
         void onDialogDismiss();
@@ -154,7 +156,11 @@ public class BiometricPromptDialog extends DialogFragment {
                 mStateTv.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        dismiss();
+                        try {
+                            dismiss();
+                        }catch (Exception e){
+                            Log.d("TAG",""+e);
+                        }
                     }
                 }, 500);
                 break;

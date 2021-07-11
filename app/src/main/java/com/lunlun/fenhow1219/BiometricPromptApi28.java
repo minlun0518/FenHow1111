@@ -54,7 +54,6 @@ public class BiometricPromptApi28 implements IBiometricPromptImpl {
                         })
                 .build();
 
-
         try {
             KeyPair keyPair = generateKeyPair(KEY_NAME, true);
             // Send public key part of key pair to the server, this public key will be used for authentication

@@ -2,12 +2,35 @@
 
     <style name="Widget.Theme.FenHow1219.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/cathayhospital1</item>
+
     </style>
 
     <style name="Widget.Theme.FenHow1219.ButtonBar.Fullscreen" parent="">
 <!--        <item name="android:background">@color/colorPrimary</item>//底下按鈕-->
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+    <style name="Wight.Theme.FenHow1219.NoActionBar.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@drawable/app_bar_background</item>
+        <item name="titleTextColor">@color/cathayhospital4</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+
+<!--    <style name="Base.V7.Widget.AppCompat.Toolbar" parent="android:Widget">-->
+<!--        <item name="titleTextAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Title</item>-->
+<!--        <item name="subtitleTextAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle</item>-->
+<!--        <item name="android:minHeight">?attr/actionBarSize</item>-->
+<!--        <item name="titleMargin">4dp</item>-->
+<!--        <item name="maxButtonHeight">@dimen/abc_action_bar_default_height_material</item>-->
+<!--        <item name="buttonGravity">top</item>-->
+<!--        <item name="collapseIcon">?attr/homeAsUpIndicator</item>-->
+<!--        <item name="collapseContentDescription">@string/abc_toolbar_collapse_description</item>-->
+<!--        <item name="contentInsetStart">16dp</item>-->
+<!--        <item name="contentInsetStartWithNavigation">@dimen/abc_action_bar_content_inset_with_nav</item>-->
+<!--        <item name="android:paddingLeft">@dimen/abc_action_bar_default_padding_start_material</item>-->
+<!--        <item name="android:paddingRight">@dimen/abc_action_bar_default_padding_end_material</item>-->
+<!--    </style>-->
 
     <style name="GrayButton">
         <item name="android:textColor">#ffffffff</item>

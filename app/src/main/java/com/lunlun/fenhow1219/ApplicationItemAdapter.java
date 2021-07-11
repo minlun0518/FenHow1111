@@ -72,7 +72,7 @@ public class ApplicationItemAdapter extends RecyclerView.Adapter < ApplicationIt
             public void onClick(View v) {
                 new AlertDialog.Builder(context)
                         .setIcon(applicationItem.imageViewpost)
-                        .setMessage("早安你好")
+                        .setMessage("這是"+applicationItem.appName+"的對話框")
                         .setTitle(applicationItem.appName)
                         .show();
             }

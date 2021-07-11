@@ -1,7 +1,6 @@
 package com.lunlun.fenhow1219;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,7 +87,7 @@ public class LoginUserListAdapter extends RecyclerView.Adapter {
                 tietIDorEmail.setText(loginUserList.get(position).getUserID());
                 TextView tietPassword = view2.findViewById(R.id.password);
                 tietPassword.setText(loginUserList.get(position).getUserPassword());
-                Switch sw = view2.findViewById(R.id.sw);
+                Switch sw = view2.findViewById(R.id.switchEmailId);
                 sw.setChecked(true);
                 Snackbar.make(view, "c8 c8 c8 " + loginUserList.get(position).getUserName(), Snackbar.LENGTH_LONG).show();
             }

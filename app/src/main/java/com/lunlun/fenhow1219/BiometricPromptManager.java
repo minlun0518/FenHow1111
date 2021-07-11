@@ -96,7 +96,6 @@ public interface OnBiometricIdentifyCallback {
         if (keyguardManager.isKeyguardSecure()) {
             return true;
         }
-
         return false;
     }
 

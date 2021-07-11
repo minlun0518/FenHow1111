@@ -23,14 +23,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FenHow1219.NoActionBar">
-        <activity android:name=".AccountActivity"></activity>
+
         <activity
             android:name=".AppMenuActivity"
             android:label="所有功能" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.FenHow1219.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,24 +38,27 @@
         </activity>
         <activity
             android:name=".SystemManagementActivity"
-            android:label="系統管理後台" />
+            android:label="系統管理後台"/>
         <activity
             android:name=".AppPermissionActivity"
             android:label="請求權限" />
         <activity
             android:name=".Login"
             android:label="登入"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity">
+        </activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".WelcomeActivity"
-            android:theme="@style/Theme.FenHow1219.NoActionBar" />
+            android:theme="@style/Theme.FenHow1219.NoActionBar">
+        </activity>
         <activity
             android:name=".SignUp"
-            android:label="註冊" />
+            android:label="註冊">
+        </activity>
         <activity
             android:name=".SignWorkActivity"
             android:label="出缺勤系統"

@@ -20,7 +20,7 @@
             android:key="usebio_finger"
             android:summaryOff="@string/usebio_finger_summary_off"
             android:summaryOn="@string/usebio_finger_summary_on"
-            android:title="啟用臉部辨識" />
+            android:title="啟用指紋辨識" />
     </PreferenceCategory>
 
     <PreferenceCategory

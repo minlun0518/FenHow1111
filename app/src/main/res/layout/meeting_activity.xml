@@ -86,7 +86,8 @@
                 android:background="@drawable/gradient_spinner"
                 android:minHeight="40dp"
                 android:popupBackground="@drawable/background_02"
-                android:spinnerMode="dropdown" />
+                android:spinnerMode="dropdown"
+                />
         </LinearLayout>
 
         <LinearLayout

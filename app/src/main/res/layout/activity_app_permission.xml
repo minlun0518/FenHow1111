@@ -8,6 +8,21 @@
     android:fitsSystemWindows="true"
     tools:context=".AppPermissionActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_BarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/app_bar_background"
+            app:collapseIcon="@drawable/ic_back_arrow"
+            app:titleTextColor="@color/cathayhospital4" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -29,6 +29,8 @@
     <string name="signup">註冊</string>
     <string name="loginhere">點此登入</string>
     <string name="idoremail">員工編號 or Email</string>
+    <string name="useemail">使用Email</string>
+    <string name="useemployeeid">使用員工編號</string>
     <string name="logout">登出</string>
     <string name="change_password">更改密碼</string>
     <string name="app_time_attendance_system">打卡出勤系統</string>

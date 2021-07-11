@@ -17,7 +17,6 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/app_bar_background"
             app:titleTextColor="@color/cathayhospital4" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout

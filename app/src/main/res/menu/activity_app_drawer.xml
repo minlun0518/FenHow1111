@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <group>
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/icon_home"
+            android:title="首頁"/>
+    </group>
+
     <group android:checkableBehavior="single"
         android:id="@+id/activity_med">
         <item
@@ -37,9 +44,8 @@
     <group android:id="@+id/activity_zu">
         <item
             android:id="@+id/nav_environmental_inspection"
-            android:icon="@drawable/icon_app_meeting"
+            android:icon="@drawable/icon_building"
             android:title="環境巡檢系統" />
-
     </group>
 
 </menu>

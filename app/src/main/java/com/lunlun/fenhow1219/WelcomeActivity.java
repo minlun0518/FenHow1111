@@ -21,14 +21,16 @@ public class WelcomeActivity extends AppCompatActivity {
         findViewById(R.id.dummy_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent().setClass(WelcomeActivity.this, Login.class));
+                startActivity(new Intent(WelcomeActivity.this, Login.class));
+                finish();
             }
         });
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent().setClass(WelcomeActivity.this, SignUp.class));
+                startActivity(new Intent(WelcomeActivity.this, SignUp.class));
+                finish();
             }
         });
 

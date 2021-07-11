@@ -205,19 +205,21 @@ public class SignInFragment extends Fragment {
                             this.isAruba = false;
                             _errorMsg = "連線中.....";
                         } else if (_ip.startsWith("192.168")) {
-                            if (_ssid.equals("Minlun") || _ssid.startsWith("Min")) {
+                            Log.d(TAG,"_ip : "+_ip);
+                            Log.d(TAG,"_ssid : "+_ssid);
+                            if (_ssid.equals("minlun") || _ssid.startsWith("minlun")) {
                                 this.isAruba = true;
                                 this.mTextViewWifiStatus.setText(_ip);
                             } else {
                                 this.isAruba = false;
                                 _errorMsg ="連錯人了";
                             }
-                        } else if (_ssid.startsWith("FJU")) {
+                        } else if (_ssid.startsWith("fju")) {
                             this.isAruba = true;
                             this.mTextViewWifiStatus.setText(_ip);
                         } else {
                             this.isAruba = false;
-                            _errorMsg = "需連接FJU才可以使用簽到退功能";
+                            _errorMsg = "需連接FJU網路";
                         }
                         this.mImageViewWifi.setImageResource(R.drawable.icon_wifi0);
                         double strength = (double) WifiManager.calculateSignalLevel(info.getRssi(), 11);
@@ -234,7 +236,7 @@ public class SignInFragment extends Fragment {
                         }
                         if (strength <= 1.0d) {
                             this.weak_signal = true;
-                            _errorMsg = "請至Wi-Fi訊號較強處簽到退!!!.....";
+                            _errorMsg = "請至Wi-Fi訊號較強處.....";
                         } else {
                             this.weak_signal = false;
                         }
@@ -254,7 +256,6 @@ public class SignInFragment extends Fragment {
                 this.mTextViewWifiName.setText("???");
                 this.mImageViewWifi.setImageResource(R.drawable.icon_wifi0);
             }
-
         }
     }
 

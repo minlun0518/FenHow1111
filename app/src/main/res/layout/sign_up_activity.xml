@@ -7,7 +7,6 @@
     tools:context=".SignUp"
     android:orientation="vertical">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/setting_app_BarLayout"
         android:layout_width="match_parent"

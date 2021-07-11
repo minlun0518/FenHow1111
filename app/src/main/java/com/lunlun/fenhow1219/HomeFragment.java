@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,14 +32,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 public class HomeFragment extends Fragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private View root;
-    private View root2;
+    private boolean logon = false;
     private TextView home_name_textView;
     private TextView home_date_textView;
     private RecyclerView noterecyclerView;
+    private static final int REQUEST_CODE_LOGIN = 101;
 
     private TextView textView;
     private Button clickbutton;
@@ -51,16 +55,22 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     private void findView() {
         root.findViewById(R.id.seeAlltextView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Intent().setClass(getActivity(), AppMenuActivity.class);
+                startActivity(new Intent(getActivity(), AppMenuActivity.class));
             }
         });
 
         home_name_textView = root.findViewById(R.id.home_name_TextView);
-        home_name_textView.setText(setGreetings() + " 好孩子 藥師  Welcome Back");
+        home_name_textView.setText(setGreetings() + " 測試中   Welcome Back");
         home_date_textView = root.findViewById(R.id.home_date_TextView);
         home_date_textView.setText(MyDateUtils.formatDefaultWithDayOfWeek(Calendar.getInstance()));
         clickbutton = root.findViewById(R.id.clickbutton);
@@ -80,7 +90,7 @@ public class HomeFragment extends Fragment {
         List<ApplicationItem> applicationItemList = new ArrayList<>();
         applicationItemList.add(new ApplicationItem(1, "打卡出勤系統", R.drawable.icon_immigration, "點我打卡", R.layout.list_daily));
         applicationItemList.add(new ApplicationItem(2, "員工排班系統", R.drawable.icon_app_calendar, "點我排班", R.layout.test));
-        applicationItemList.add(new ApplicationItem(3, "會議室簽到系統", R.drawable.icon_app_conversation, "點我簽到", R.layout.test));
+        applicationItemList.add(new ApplicationItem(3, "會議室簽到系統", R.drawable.icon_app_conversation, "點我簽到", R.layout.test2));
         applicationItemList.add(new ApplicationItem(4, "教學評量系統", R.drawable.icon_app_checklist, "點我評量", R.layout.test));
         applicationItemList.add(new ApplicationItem(5, "採檢及生理量測系統", R.drawable.icon_app_blood_sample, "點我進入", R.layout.test));
         recyclerView.setAdapter(new ApplicationItemAdapter(getActivity(), applicationItemList));
@@ -92,7 +102,6 @@ public class HomeFragment extends Fragment {
         taskList.add(new Task(2, "明日班表", R.drawable.icon_mon_card, "大夜班"));
         taskList.add(new Task(3, "今日會議", R.drawable.icon_app_meeting, "吃便當"));
         noterecyclerView.setAdapter(new TaskAdapter(getActivity(), taskList));
-
     }
 
 }

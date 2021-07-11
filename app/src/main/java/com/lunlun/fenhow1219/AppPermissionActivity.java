@@ -2,6 +2,7 @@ package com.lunlun.fenhow1219;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.NotificationCompat;
 
@@ -67,7 +68,12 @@ public class AppPermissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_permission);
 
+
         initView();
+
+        AppPermissionActivity.this.setTitle("權限請求");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         this.mScrollViewSMS.scrollTo(0, 500);
     }
@@ -102,14 +108,15 @@ public class AppPermissionActivity extends AppCompatActivity {
                 builder.setPositiveButton((CharSequence) "是", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         createNotification("mess.toString()");
-
                         mess=new String[]{AppPermissionActivity.this.hospMk, AppPermissionActivity.this.doctorBBCall, _message};
                         Log.d(TAG,"2222"+mess);
+                        finish();
 
                     }
                 });
                 builder.setNegativeButton((CharSequence) "否", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
 
                     }
                 });
